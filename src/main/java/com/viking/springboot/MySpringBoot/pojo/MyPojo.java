@@ -3,7 +3,7 @@ package com.viking.springboot.MySpringBoot.pojo;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Created by yanshuai on 2019/4/25
+ * Created by Viking on 2019/4/25
  */
 //@ConfigurationProperties(prefix = "my-config.pojo")
 public class MyPojo {
