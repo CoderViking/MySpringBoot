@@ -8,15 +8,15 @@ import org.springframework.context.annotation.ComponentScan;
  * Created by Viking on 2019/4/25
  */
 //@ConfigurationProperties(prefix = "my-config.pojo")
-//@ComponentScan
+@ComponentScan
 public class MyPojo {
-    @Value("my-config.pojo.name")
+    @Value("${my-config.pojo.name}")
     private String name;
-    @Value("my-config.pojo.favorite")
+    @Value("${my-config.pojo.favorite}")
     private String favorite;
-    @Value("my-config.pojo.tel")
+    @Value("${my-config.pojo.tel}")
     private long tel;
-    @Value("my-config.pojo.sex")
+    @Value("${my-config.pojo.sex}")
     private String sex;
 
     public String getName() {

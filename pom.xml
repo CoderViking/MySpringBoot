@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
 	</parent>
 	<groupId>com.viking.springboot</groupId>
 	<artifactId>MySpringBoot</artifactId>
@@ -23,10 +23,10 @@
 			<!--<groupId>org.springframework.boot</groupId>-->
 			<!--<artifactId>spring-boot-starter-data-elasticsearch</artifactId>-->
 		<!--</dependency>-->
-		<!--<dependency>&lt;!&ndash;jpa依赖包&ndash;&gt;-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-		<!--</dependency>-->
+		<dependency><!--jpa依赖包-->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 		<!--<dependency>&lt;!&ndash;mongoDB依赖包&ndash;&gt;-->
 			<!--<groupId>org.springframework.boot</groupId>-->
 			<!--<artifactId>spring-boot-starter-data-mongodb</artifactId>-->
@@ -44,11 +44,16 @@
 			<!--<artifactId>mybatis-spring-boot-starter</artifactId>-->
 			<!--<version>2.0.1</version>-->
 		<!--</dependency>-->
-		<!--<dependency>&lt;!&ndash;mysql数据库连接包&ndash;&gt;-->
-			<!--<groupId>mysql</groupId>-->
-			<!--<artifactId>mysql-connector-java</artifactId>-->
-			<!--<scope>runtime</scope>-->
+		<dependency><!--mysql数据库驱动-->
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.47</version>
+		</dependency>
+		<!--<dependency>&lt;!&ndash;jdbc&ndash;&gt;-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-data-jdbc</artifactId>-->
 		<!--</dependency>-->
+
 		<dependency><!--springBoot测试依赖包-->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
