@@ -37,7 +37,7 @@ public class MyRestController {
     }
 
     @RequestMapping("img")//失败
-    public String showPicture(){
+    public Object showPicture(){
         return "/daojiangxing.jpg";
 
     }
