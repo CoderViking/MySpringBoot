@@ -2,6 +2,7 @@ package com.viking.springboot.MySpringBoot.pojo;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -11,13 +12,13 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan
 public class MyPojo {
     @Value("${my-config.pojo.name}")
-    private String name;
+    public String name;
     @Value("${my-config.pojo.favorite}")
-    private String favorite;
+    public String favorite;
     @Value("${my-config.pojo.tel}")
-    private long tel;
+    public long tel;
     @Value("${my-config.pojo.sex}")
-    private String sex;
+    public String sex;
 
     public String getName() {
         return name;
