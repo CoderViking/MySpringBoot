@@ -1,26 +1,14 @@
 package com.viking.springboot.MySpringBoot.pojo;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-
 /**
- * Created by Viking on 2019/4/25
+ * Created by yanshuai on 2019/4/28
  */
-//@Configuration
-//@ConfigurationProperties(prefix = "my-config.pojo")
-@ComponentScan
-public class MyPojo {
-    @Value("${my-config.pojo.name}")
+public class NewPojo {
     public String name;
-    @Value("${my-config.pojo.favorite}")
     public String favorite;
-    @Value("${my-config.pojo.tel}")
     public long tel;
-    @Value("${my-config.pojo.sex}")
     public String sex;
+    public String addr;
 
     public String getName() {
         return name;
@@ -54,13 +42,22 @@ public class MyPojo {
         this.sex = sex;
     }
 
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr;
+    }
+
     @Override
     public String toString() {
-        return "MyPojo{" +
+        return "NewPojo{" +
                 "name='" + name + '\'' +
                 ", favorite='" + favorite + '\'' +
                 ", tel=" + tel +
                 ", sex='" + sex + '\'' +
+                ", addr='" + addr + '\'' +
                 '}';
     }
 }

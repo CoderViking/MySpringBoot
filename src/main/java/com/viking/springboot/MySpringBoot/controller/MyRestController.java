@@ -2,15 +2,18 @@ package com.viking.springboot.MySpringBoot.controller;
 
 import com.viking.springboot.MySpringBoot.dao.WeatherRepository;
 import com.viking.springboot.MySpringBoot.pojo.MyPojo;
+import com.viking.springboot.MySpringBoot.pojo.NewPojo;
 import com.viking.springboot.MySpringBoot.pojo.Weather;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by Viking on 2019/4/25
@@ -65,9 +68,38 @@ public class MyRestController {
         return "OK";
     }
     @RequestMapping("list")
-    public Object list(int pageNum,int pageSize){
+    public Object list(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize){
         Page<Weather> page = weatherRepository.findAll(PageRequest.of(pageNum-1, pageSize));
         System.out.println(page.getContent());
         return page;
+    }
+    @RequestMapping("json")
+    public Object testJson(){
+        MyPojo pojo = new MyPojo();
+        pojo.setSex("girl");
+        pojo.setName("Fast Json");
+        pojo.setFavorite("Like swimming in the pool");
+        pojo.setTel(1235484);
+        List<MyPojo> list = new ArrayList<>();
+        list.add(pojo);
+        list.add(pojo);
+        MyPojo nPo = new MyPojo();
+        BeanUtils.copyProperties(pojo,nPo);
+        System.out.println("nPo:"+nPo);
+        Map<String,String> map = new HashMap<>();
+        map.put("key","just a key of my Map");
+        map.put("value","this is the value for key,in this map");
+        System.out.println("map:"+map);
+        Map<String,String> nMap = new HashMap<>();
+        System.out.println("Before copy nMap:"+nMap);
+        BeanUtils.copyProperties(map,nMap);
+        System.out.println("after copy nMap:"+nMap);
+        MyPojo mPo = new MyPojo();
+        BeanUtils.copyProperties(pojo,mPo,"favorite");
+        System.out.println("mPo:"+mPo);
+        NewPojo wPo = new NewPojo();
+        BeanUtils.copyProperties(pojo,wPo);
+        System.out.println("wPo:"+wPo);
+        return list;
     }
 }

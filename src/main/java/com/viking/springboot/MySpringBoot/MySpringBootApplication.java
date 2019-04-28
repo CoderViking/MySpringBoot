@@ -38,10 +38,10 @@ public class MySpringBootApplication {
 		application.setBanner(banner);
 //		System.out.println("启动之前执行的代码");
 		SpringApplication.run(MySpringBootApplication.class,args);
-//		System.out.println("启动之后执行的代码");
-//		MyPojo pojo = new MyPojo();
-//		System.out.println(pojo.toString());
-//		System.out.println(pojo.name);
+		System.out.println("启动之后执行的代码");
+		MyPojo pojo = new MyPojo();
+		System.out.println(pojo.toString());
+		System.out.println(pojo.name);
 	}
 
 }
