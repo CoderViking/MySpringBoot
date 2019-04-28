@@ -19,4 +19,6 @@ That is a project for learning the springBoot<br/>
     * 31.6.1. Code Generation
     * 31.6.2. Using DSLContext
     * 31.6.3. jOOQ SQL Dialect
-    * 31.6.4. Customizing jOOQ
+    * 31.6.4. Customizing jOOQ<br/>
+[The demo of Learning springBoot](https://mp.weixin.qq.com/s?__biz=MzUzODcwMDIzOQ==&mid=2247487355&idx=1&sn=81d536ac18f88af3f348dd4f775a41af)
+
