@@ -47,18 +47,28 @@
 		<dependency><!--mysql数据库驱动-->
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<!--<version>5.1.47</version>-->
+			<version>5.1.47</version>
 			<!--<version>6.0.6</version>-->
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jdbc -->
+		<dependency><!--Tomcat的jdbc连接池-->
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+			<!--<version>8.0.53</version>-->
 		</dependency>
 		<!--<dependency>&lt;!&ndash;jdbc&ndash;&gt;-->
 			<!--<groupId>org.springframework.boot</groupId>-->
 			<!--<artifactId>spring-boot-starter-data-jdbc</artifactId>-->
 		<!--</dependency>-->
-
 		<dependency><!--springBoot测试依赖包-->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency><!--使用注释处理器生成自己的元数据-->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional> true </optional>
 		</dependency>
 		<dependency><!--开发人员工具-->
 			<groupId> org.springframework.boot </groupId>

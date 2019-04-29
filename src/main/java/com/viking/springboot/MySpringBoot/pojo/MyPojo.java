@@ -2,24 +2,26 @@ package com.viking.springboot.MySpringBoot.pojo;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Created by Viking on 2019/4/25
  */
 //@Configuration
-//@ConfigurationProperties(prefix = "my-config.pojo")
-@ComponentScan
+@ConfigurationProperties(prefix = "my-config.pojo")
+//@ComponentScan
 public class MyPojo {
-    @Value("${my-config.pojo.name}")
+//    @Value("${my-config.pojo.name}")
     public String name;
-    @Value("${my-config.pojo.favorite}")
+//    @Value("${my-config.pojo.favorite}")
     public String favorite;
-    @Value("${my-config.pojo.tel}")
+//    @Value("${my-config.pojo.tel}")
     public long tel;
-    @Value("${my-config.pojo.sex}")
+//    @Value("${my-config.pojo.sex}")
     public String sex;
 
     public String getName() {
