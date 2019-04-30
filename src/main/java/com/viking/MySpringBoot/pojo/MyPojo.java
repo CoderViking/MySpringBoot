@@ -1,4 +1,4 @@
-package com.viking.springboot.MySpringBoot.pojo;
+package com.viking.MySpringBoot.pojo;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;

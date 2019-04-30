@@ -1,7 +1,7 @@
-package com.viking.springboot.MySpringBoot;
+package com.viking.MySpringBoot;
 
-import com.viking.springboot.MySpringBoot.dao.WeatherRepository;
-import com.viking.springboot.MySpringBoot.pojo.Weather;
+import com.viking.MySpringBoot.dao.springboot.WeatherRepository;
+import com.viking.MySpringBoot.pojo.Weather;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

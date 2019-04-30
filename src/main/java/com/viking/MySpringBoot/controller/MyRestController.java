@@ -1,9 +1,9 @@
-package com.viking.springboot.MySpringBoot.controller;
+package com.viking.MySpringBoot.controller;
 
-import com.viking.springboot.MySpringBoot.dao.WeatherRepository;
-import com.viking.springboot.MySpringBoot.pojo.MyPojo;
-import com.viking.springboot.MySpringBoot.pojo.NewPojo;
-import com.viking.springboot.MySpringBoot.pojo.Weather;
+import com.viking.MySpringBoot.dao.springboot.WeatherRepository;
+import com.viking.MySpringBoot.pojo.MyPojo;
+import com.viking.MySpringBoot.pojo.NewPojo;
+import com.viking.MySpringBoot.pojo.Weather;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -101,5 +101,10 @@ public class MyRestController {
         BeanUtils.copyProperties(pojo,wPo);
         System.out.println("wPo:"+wPo);
         return list;
+    }
+    @RequestMapping("get")
+    public Object getWeather(Long id){
+//        return weatherRepository.getWeather(id);
+        return "OK";
     }
 }

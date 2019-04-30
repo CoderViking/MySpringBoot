@@ -1,4 +1,4 @@
-package com.viking.springboot.MySpringBoot.config;
+package com.viking.MySpringBoot.config;
 
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 

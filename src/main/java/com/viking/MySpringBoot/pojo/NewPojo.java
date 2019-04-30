@@ -1,4 +1,4 @@
-package com.viking.springboot.MySpringBoot.pojo;
+package com.viking.MySpringBoot.pojo;
 
 /**
  * Created by yanshuai on 2019/4/28

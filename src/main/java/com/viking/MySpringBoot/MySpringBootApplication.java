@@ -1,8 +1,6 @@
-package com.viking.springboot.MySpringBoot;
+package com.viking.MySpringBoot;
 
-import com.viking.springboot.MySpringBoot.dao.WeatherRepository;
-import com.viking.springboot.MySpringBoot.pojo.MyPojo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.viking.MySpringBoot.pojo.MyPojo;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

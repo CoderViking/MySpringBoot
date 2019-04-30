@@ -1,4 +1,4 @@
-package com.viking.springboot.MySpringBoot.db;
+package com.viking.MySpringBoot.db;
 
 import org.springframework.boot.autoconfigure.data.AbstractRepositoryConfigurationSourceSupport;
 import org.springframework.core.env.Environment;

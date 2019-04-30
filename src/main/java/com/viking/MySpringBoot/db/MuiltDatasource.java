@@ -1,4 +1,4 @@
-package com.viking.springboot.MySpringBoot.db;
+package com.viking.MySpringBoot.db;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;

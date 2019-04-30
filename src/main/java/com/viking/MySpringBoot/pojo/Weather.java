@@ -1,4 +1,4 @@
-package com.viking.springboot.MySpringBoot.pojo;
+package com.viking.MySpringBoot.pojo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +19,7 @@ public class Weather {
     private float temperature;
     private String tip;
     private Date date;
+    private String userName;
 
     public long getRid() {
         return rid;
@@ -58,5 +59,13 @@ public class Weather {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
