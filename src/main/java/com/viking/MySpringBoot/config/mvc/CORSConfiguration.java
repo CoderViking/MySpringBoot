@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * Created by Viking on 2019/5/6
  * 重写接口方法实现配置跨域
+ * 在com.viking.MySpringBoot.config.MyConfiguration中已实现跨域配置不再重复配置
  */
 //@Configuration
 //@EnableWebMvc
