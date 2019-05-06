@@ -3,13 +3,14 @@ package com.viking.MySpringBoot.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * Created by Viking on 2019/4/26
- * 跨域配置
+ * 匿名内部类实现跨域配置
  */
-//@Configuration
+@Configuration
 public class MyConfiguration {
 
     @Bean

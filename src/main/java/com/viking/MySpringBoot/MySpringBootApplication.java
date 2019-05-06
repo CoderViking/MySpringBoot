@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.PrintStream;
 
 @RestController
-@EnableConfigurationProperties({MyPojo.class})
+//@EnableConfigurationProperties({MyPojo.class})
 @SpringBootApplication
 public class MySpringBootApplication {
 

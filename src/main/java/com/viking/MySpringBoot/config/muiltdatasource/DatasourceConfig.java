@@ -14,7 +14,8 @@ import javax.sql.DataSource;
 import java.util.Map;
 
 /**
- * Created by yanshuai on 2019/4/30
+ * Created by Viking on 2019/4/30
+ * 自定义数据源配置
  */
 @Configuration
 public class DatasourceConfig {
