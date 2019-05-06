@@ -1,4 +1,4 @@
-package com.viking.MySpringBoot.config;
+package com.viking.MySpringBoot.config.mvc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

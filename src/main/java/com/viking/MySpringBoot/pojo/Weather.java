@@ -1,9 +1,6 @@
 package com.viking.MySpringBoot.pojo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -19,6 +16,7 @@ public class Weather {
     private float temperature;
     private String tip;
     private Date date;
+    @Column(name = "user_name")
     private String userName;
 
     public long getRid() {
