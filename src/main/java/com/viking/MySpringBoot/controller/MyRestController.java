@@ -1,16 +1,11 @@
 package com.viking.MySpringBoot.controller;
 
-import com.viking.MySpringBoot.dao.springboot.WeatherRepository;
 import com.viking.MySpringBoot.pojo.MyPojo;
 import com.viking.MySpringBoot.pojo.NewPojo;
-import com.viking.MySpringBoot.pojo.Weather;
+import com.viking.MySpringBoot.entity.Weather;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
@@ -24,8 +19,8 @@ import java.util.*;
 public class MyRestController {
 //    @Autowired
 //    private MyPojo pojo;
-    @Autowired
-    private WeatherRepository weatherRepository;
+//    @Autowired
+//    private WeatherRepository weatherRepository;
 
     @RequestMapping(value = "user",method = RequestMethod.GET)
     public MyPojo getPojo(){
@@ -46,17 +41,6 @@ public class MyRestController {
         return pojo;
     }
 
-    @RequestMapping("img")//失败
-    public Object showPicture(){
-        return "/daojiangxing.jpg";
-
-    }
-
-//    @RequestMapping("pojo")
-//    public Object testMyPojo(){
-//        System.out.println(pojo.toString());
-//        return pojo;
-//    }
     @RequestMapping("add")
     public Object addWeather(String weather,float temperature,String tip){
         Weather bean = new Weather();
@@ -64,14 +48,8 @@ public class MyRestController {
         bean.setTemperature(temperature);
         bean.setTip(tip);
         bean.setDate(new Date());
-        weatherRepository.save(bean);
+//        weatherRepository.save(bean);
         return "OK";
-    }
-    @RequestMapping("list")
-    public Object list(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize){
-        Page<Weather> page = weatherRepository.findAll(PageRequest.of(pageNum-1, pageSize));
-        System.out.println(page.getContent());
-        return page;
     }
     @RequestMapping("json")
     public Object testJson(){

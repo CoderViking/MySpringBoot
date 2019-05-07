@@ -1,22 +1,17 @@
-package com.viking.MySpringBoot.pojo;
+package com.viking.MySpringBoot.entity;
 
-import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by Viking on 2019/4/27
  * 测试springBoot中jpa的url参数
  */
-@Entity(name = "weather")
 public class Weather {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long rid;
     private String weather;
     private float temperature;
     private String tip;
     private Date date;
-    @Column(name = "user_name")
     private String userName;
 
     public long getRid() {
