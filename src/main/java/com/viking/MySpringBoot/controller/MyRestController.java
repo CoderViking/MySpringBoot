@@ -1,9 +1,11 @@
 package com.viking.MySpringBoot.controller;
 
+import com.viking.MySpringBoot.mapper.FruitsMapper;
 import com.viking.MySpringBoot.pojo.MyPojo;
 import com.viking.MySpringBoot.pojo.NewPojo;
 import com.viking.MySpringBoot.entity.Weather;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +23,9 @@ public class MyRestController {
 //    private MyPojo pojo;
 //    @Autowired
 //    private WeatherRepository weatherRepository;
+
+    @Autowired
+    private FruitsMapper fruitsMapper;
 
     @RequestMapping(value = "user",method = RequestMethod.GET)
     public MyPojo getPojo(){
@@ -84,5 +89,17 @@ public class MyRestController {
     public Object getWeather(Long id){
 //        return weatherRepository.getWeather(id);
         return "OK";
+    }
+
+    @RequestMapping("mybatis")
+    public Object testSql(){
+        return fruitsMapper.getAllWeather();
+    }
+    @RequestMapping("ins")
+    public Object testInsert(Weather param){
+        param.setDate(new Date());
+        fruitsMapper.insert(param);
+        return "OK";
+
     }
 }

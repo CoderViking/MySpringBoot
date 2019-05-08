@@ -1,4 +1,4 @@
-package com.viking.MySpringBoot.config.datasource;
+package com.viking.MySpringBoot.config.mapper;
 
 import com.alibaba.druid.support.http.WebStatFilter;
 
@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebInitParam;
 
 /**
  * Created by Viking on 2019/5/7
+ * 配置DruidStatFilter
  */
 @WebFilter(
         filterName="druidWebStatFilter",

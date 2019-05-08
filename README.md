@@ -1,8 +1,11 @@
 # MySpringBoot
 That is a project for learning the springBoot<br/>
-当前版本1.0<br/>
-* springBoot中使用Hikari连接池和spring data JPA配置的多数据源连接
-* 基于springMVC的web项目和springBoot中跨域的配置
+当前版本2.0<br/>
+* springBoot中使用Druid连接池和Mybatis配置的数据源连接
+* 使用springBoot自带的日志工具Logging配置输出sql语句
+* 使用Druid Monitor监控sql
+* 打开http://localhost:8080/druid/login.html登录监控平台
+* 登录账号在DruidStatViewServlet.java中配置
 #### [Spring Boot Reference Guide](https://docs.spring.io/spring-boot/docs/current/reference/html/index.html)
 ##### [31. Working with SQL Databases](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-sql.html)
 * [31.1. Configure a DataSource](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-sql.html#boot-features-configure-datasource)
