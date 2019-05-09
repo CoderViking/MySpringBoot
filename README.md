@@ -1,6 +1,7 @@
 # MySpringBoot
 That is a project for learning the springBoot<br/>
 当前版本2.0<br/>
+* 修改springBoot启动时的Banner图样
 * springBoot中使用Druid连接池和Mybatis配置的数据源连接
 * 使用springBoot自带的日志工具Logging配置输出sql语句
 * 使用Druid Monitor监控sql
