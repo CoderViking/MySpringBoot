@@ -1,5 +1,7 @@
 package com.viking.MySpringBoot.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.viking.MySpringBoot.mapper.FruitsMapper;
 import com.viking.MySpringBoot.pojo.MyPojo;
 import com.viking.MySpringBoot.pojo.NewPojo;
@@ -92,8 +94,18 @@ public class MyRestController {
     @RequestMapping("multi")
     public Object testMulti(){
         Map<String,Object> result = new HashMap<>();
-        result.put("webSpider",fruitsMapper.getBook());
         result.put("springBoot",fruitsMapper.getList());
+        PageHelper.startPage(1,20);
+        PageInfo<Map> pageInfo = new PageInfo<>(fruitsMapper.getBook());
+        result.put("webSpider",pageInfo);
+        result.put("springBoot2",fruitsMapper.getList());
+        result.put("webSpider2",fruitsMapper.getBook());
         return result;
+    }
+    @RequestMapping("ins")
+    public Object insertMulti(Weather param){
+        param.setDate(new Date());
+        fruitsMapper.addWeather(param);
+        return "OK";
     }
 }

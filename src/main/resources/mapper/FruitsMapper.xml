@@ -7,6 +7,10 @@
         select * from weather
     </select>
     <select id="getBook"  resultType="java.util.Map">
-        SELECT * FROM  jdbook limit 1000
+        SELECT * FROM  jdbook
     </select>
+    <insert id="addWeather" parameterType="com.viking.MySpringBoot.entity.Weather">
+        INSERT INTO weather (weather,temperature,tip,date,user_name)
+        VALUES (#{param.weather},#{param.temperature},#{param.tip},#{param.date},#{param.userName})
+    </insert>
 </mapper>

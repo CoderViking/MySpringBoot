@@ -15,28 +15,9 @@ public class DynamicDatasource extends AbstractRoutingDataSource {
     public static final String DEFAULT = "springboot";
     private static DynamicDatasource instance;
     private static final byte[] lock = new byte[0];
-    private static Map<Object,Object> datasourceMap = new HashMap<>();
 
-    @Override
-    public void setTargetDataSources(Map<Object, Object> targetDataSources) {
-        super.setTargetDataSources(targetDataSources);
-        datasourceMap.putAll(targetDataSources);
-        super.afterPropertiesSet();
-    }
-
-    public Map<Object,Object> getDatasourceMap(){
-        return datasourceMap;
-    }
-
-    @Nullable
-    @Override
-    protected Object determineCurrentLookupKey() {
-        String key = DatasourceContextHolder.getDB();
-        return key;
-    }
     private DynamicDatasource (){}
-
-    public static synchronized DynamicDatasource getInstance(){
+    public static synchronized DynamicDatasource getInstance(){//双重锁同步，返回单例对象
         if (instance==null){
             synchronized (lock){
                 if (instance==null){
@@ -45,6 +26,10 @@ public class DynamicDatasource extends AbstractRoutingDataSource {
             }
         }
         return instance;
+    }
+    @Override
+    protected Object determineCurrentLookupKey() {
+        return DynamicDatasourceHolder.getDatasource();
     }
 
 }

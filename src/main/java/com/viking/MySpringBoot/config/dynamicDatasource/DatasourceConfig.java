@@ -15,21 +15,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by yanshuai on 2019/5/9
+ * Created by Viking on 2019/5/9
  */
 @Configuration
 @MapperScan(basePackages = "com.viking.MySpringBoot.mapper")
 public class DatasourceConfig {
     //数据源1
     @Bean(name = "springboot")
-    @ConfigurationProperties(prefix = "spring.datasource.springboot") // application.properteis中对应属性的前缀
+    @ConfigurationProperties(prefix = "spring.datasource.springboot") // application.properties中对应属性的前缀
     public DataSource springBoot() {
         return DruidDataSourceBuilder.create().build();
-    }
+    }//使用Druid连接池创建数据源
 
     //数据源2
     @Bean(name = "webspider")
-    @ConfigurationProperties(prefix = "spring.datasource.webspider") // application.properteis中对应属性的前缀
+    @ConfigurationProperties(prefix = "spring.datasource.webspider") // application.properties中对应属性的前缀
     public DataSource webSpider() {
         return DruidDataSourceBuilder.create().build();
     }
@@ -44,11 +44,11 @@ public class DatasourceConfig {
         // 默认数据源
         dynamicDataSource.setDefaultTargetDataSource(springBoot());
         // 配置多数据源
-        Map<Object, Object> dsMap = new HashMap<>();
-        dsMap.put("springboot", springBoot());
-        dsMap.put("webspider", webSpider());
+        Map<Object, Object> datasourceMap = new HashMap<>();
+        datasourceMap.put("springboot", springBoot());
+        datasourceMap.put("webspider", webSpider());
 
-        dynamicDataSource.setTargetDataSources(dsMap);
+        dynamicDataSource.setTargetDataSources(datasourceMap);
         return dynamicDataSource;
     }
 
