@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 /**
@@ -95,5 +102,28 @@ public class MyRestController {
         result.put("webSpider",fruitsMapper.getBook());
         result.put("springBoot",fruitsMapper.getList());
         return result;
+    }
+    @RequestMapping("morse")
+    public Object testNet(String code,String type) throws IOException {
+        String param = "code="+code+"&operate="+type;
+        URL url = new URL("https://tool.lu/morse/ajax.html");
+        //发送请求
+        HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
+        httpurlconnection.setDoOutput(true);
+        httpurlconnection.setRequestMethod("POST");//以post方式请求
+        httpurlconnection.getOutputStream().write(param.getBytes("utf-8"));
+        httpurlconnection.getOutputStream().flush();
+        httpurlconnection.getOutputStream().close();
+        //解析响应结果
+        InputStream inputStream = httpurlconnection.getInputStream();
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader reader =new BufferedReader(inputStreamReader);
+        StringBuilder resultBuffer = new StringBuilder();
+        String tempLine;
+
+        while ((tempLine = reader.readLine()) != null) {
+            resultBuffer.append(tempLine);
+        }
+        return resultBuffer.toString();
     }
 }
