@@ -53,12 +53,8 @@ public class MyRestController {
     }
 
     @RequestMapping("add")
-    public Object addWeather(String weather,float temperature,String tip){
-        Weather bean = new Weather();
-        bean.setWeather(weather);
-        bean.setTemperature(temperature);
-        bean.setTip(tip);
-        bean.setDate(new Date());
+    public Object addWeather(Weather param){
+        param.setDate(new Date());
 //        weatherRepository.save(bean);
         return "OK";
     }
