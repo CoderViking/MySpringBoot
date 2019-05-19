@@ -1,6 +1,8 @@
 package com.viking.MySpringBoot.controller;
 
 import com.viking.MySpringBoot.entity.Weather;
+import com.viking.MySpringBoot.mapper.FruitsMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,6 +20,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("tl")
 public class ThymeleafController {
+    @Autowired
+    private FruitsMapper mapper;
+
     @RequestMapping("home")
     public Object home(/*Map<String,String> param,HttpServletRequest request*/){
         /**
@@ -49,7 +55,11 @@ public class ThymeleafController {
         model.addObject("isMarry",true);
         model.addObject("id",null);
         model.addObject("name","");
+        model.addObject("China","<b>Chian</b>,USA,UK");
+        List<Weather> list = mapper.getList();
+        model.addObject("list",list);
         model.setViewName("/my/home");
+        System.out.println("访问页面");
         return model;
     }
     @RequestMapping("json")

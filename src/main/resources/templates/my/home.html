@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
 </head>
 <body>
     <h5>Welcome to my web!</h5>
-    username:<span th:text="${name}">unknow</span>
+    username:<span th:text="${username}">unknow</span>
     account:<span th:text="${account}">unknow</span>
 
     <h4>@{...} 处理 url 地址</h4>
@@ -143,6 +149,41 @@
     <!--后台输出了：model.addAttribute("isMarry", true);-->
     <!--A>B?X:Y，这里的 Y 部分是省略的，此时如果 A>B 返回 false，则整个三元运算结果为 null-->
     <p th:class="${isMarry}?'css2'">已婚</p>
-    <p th:text="!${isMarry}?'css2'">已婚</p>
+    <p th:text="!${isMarry}?'css2'">已婚锤子</p>
+
+    <p th:text="5+9">China</p>
+    <p th:text="我爱中国">China</p>
+    <!--$符获取后台传来的值，th:text 将值替换标签体的内容-->
+    <p th:text="${username}">中国</p>
+
+    <p>Welcome to our &lt;b&gt;fantastic&lt;/b&gt; grocery store!</p>
+    <!--th:text 会对结果中的特殊字符进行转义，如 < 转成 &lt; 将 > 转成 &gt;-->
+    <p th:text="${China}">默认转义</p>
+    <!--th:utext 不会结果进行转义-->
+    <p th:utext="${China}">不会转义</p>
+
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">天气</th>
+                <th scope="col">温度</th>
+                <th scope="col">提示</th>
+                <th scope="col">日期</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="bean : ${list}">
+                <th scope="row" th:text="${list.length}"></th>
+                <td th:text="${bean.weather}">weather</td>
+                <td th:text="${bean.temperature}">temperature</td>
+                <td th:text="${bean.tip}">tip</td>
+                <td th:text="${bean.date}">date</td>
+            </tr>
+        </tbody>
+
+    </table>
 </body>
 </html>

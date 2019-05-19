@@ -105,10 +105,9 @@ public class MyRestController {
         result.put("webSpider2",fruitsMapper.getBook());
         return result;
     }
-<<<<<<< HEAD
     @RequestMapping("morse")
     public Object testNet(String code,String type) throws IOException {
-        String param = "code="+code+"&operate="+type;
+        String param = "code=" + code + "&operate=" + type;
         URL url = new URL("https://tool.lu/morse/ajax.html");
         //发送请求
         HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
@@ -120,7 +119,7 @@ public class MyRestController {
         //解析响应结果
         InputStream inputStream = httpurlconnection.getInputStream();
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader reader =new BufferedReader(inputStreamReader);
+        BufferedReader reader = new BufferedReader(inputStreamReader);
         StringBuilder resultBuffer = new StringBuilder();
         String tempLine;
 
@@ -128,12 +127,11 @@ public class MyRestController {
             resultBuffer.append(tempLine);
         }
         return resultBuffer.toString();
-=======
+    }
     @RequestMapping("ins")
     public Object insertMulti(Weather param){
         param.setDate(new Date());
         fruitsMapper.addWeather(param);
         return "OK";
->>>>>>> 175e22d676d95d538524290ec668472a5e2d6f1c
     }
 }
