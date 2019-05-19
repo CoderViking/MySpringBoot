@@ -1,5 +1,8 @@
 # MySpringBoot
 That is a project for learning the springBoot<br/>
+* **当前版本3.0**
+    * 基于Druid连接池和Mybatis的AOP自定义注解多数据源支持
+    * springBoot下的pageHelper分页插件
 #### [Spring Boot Reference Guide](https://docs.spring.io/spring-boot/docs/current/reference/html/index.html)
 ##### [31. Working with SQL Databases](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-sql.html)
 * [31.1. Configure a DataSource](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-sql.html#boot-features-configure-datasource)

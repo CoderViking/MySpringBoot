@@ -15,10 +15,10 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
-    <!--配置分页插件-->
-    <plugins>
-        <plugin interceptor="com.github.pagehelper.PageInterceptor">
-            <property name="helperDialect" value="mysql"/>
-        </plugin>
-    </plugins>
+
+    <!--<plugins>&lt;!&ndash;配置分页插件 ps:若在pom文件中已经添加了pagehelper-spring-boot-starter 则只能注释这个配置或者换一个PageHelper的依赖&ndash;&gt;-->
+        <!--<plugin interceptor="com.github.pagehelper.PageInterceptor">-->
+            <!--<property name="helperDialect" value="mysql"/>-->
+        <!--</plugin>-->
+    <!--</plugins>-->
 </configuration>
