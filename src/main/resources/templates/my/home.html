@@ -3,59 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="font-awesome/4.5.0/css/font-awesome.min.css" />
+    <!-- text fonts -->
+    <link rel="stylesheet" href="css/fonts.googleapis.com.css" />
+    <!-- ace styles -->
+    <link rel="stylesheet" href="css/ace.min.css" />
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="css/ace-part2.min.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="css/ace-rtl.min.css" />
+    <!--[if lte IE 9]>-->
+    <link rel="stylesheet" href="css/ace-ie.min.css" />
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
 </head>
 <body>
-    <h5>Welcome to my web!</h5>
-    username:<span th:text="${username}">unknow</span>
-    account:<span th:text="${account}">unknow</span>
+<h5>Welcome to my web!</h5>
+username:<span th:text="${username}">unknow</span>
+account:<span th:text="${account}">unknow</span>
 
-    <h4>@{...} 处理 url 地址</h4>
-         Thymeleaf 的 @ {...} 表达式用于处理 web 应用中的 url 地址，可以是相对地址，也可以是绝对地址。
+<h4>@{...} 处理 url 地址</h4>
+     Thymeleaf 的 @ {...} 表达式用于处理 web 应用中的 url 地址，可以是相对地址，也可以是绝对地址。
 
-         @{/}  斜杠开头表示相对整个应用根目录，"/" 表示 "/应用上下文路径"
+     @{/}  斜杠开头表示相对整个应用根目录，"/" 表示 "/应用上下文路径"
 
-         假如页面当前浏览器地址为：http://localhost/thymeleaf/user/userHome，其中 thymeleaf 表示应用上下文路径，user/userHome 为后台请求路径，则常用的写法如下：<br>
+     假如页面当前浏览器地址为：http://localhost/thymeleaf/user/userHome，其中 thymeleaf 表示应用上下文路径，user/userHome 为后台请求路径，则常用的写法如下：<br>
 
-    1）@{userList} 相对当前路径结果为：http://localhost/thymeleaf/user/userList<br>
+1）@{userList} 相对当前路径结果为：http://localhost/thymeleaf/user/userList<br>
 
-    2）@{./userList} 相对当前路径结果为：http://localhost/thymeleaf/user/userList<br>
+2）@{./userList} 相对当前路径结果为：http://localhost/thymeleaf/user/userList<br>
 
-    3）@{../tiger/home} 相对当前路径结果为：http://localhost/thymeleaf/tiger/home<br>
+3）@{../tiger/home} 相对当前路径结果为：http://localhost/thymeleaf/tiger/home<br>
 
-    4）@{/tiger/home} 相对应用根目录结果为：http://localhost/thymeleaf/tiger/home<br>
+4）@{/tiger/home} 相对应用根目录结果为：http://localhost/thymeleaf/tiger/home<br>
 
-    5）@{https://www.baidu.com/} 绝对路径结果为：https://www.baidu.com<br>
+5）@{https://www.baidu.com/} 绝对路径结果为：https://www.baidu.com<br>
 
-    6）<link type="text/css" rel="stylesheet" th:href="@{/css/home.css}">，@ 以 "/" 开头相对应用根目录，否则是相对当前路径<br>
-    <a th:href="@{userList}">1、@{userList}</a><br>
-    <a th:href="@{./userList}">2、@{./userList}</a><br>
-    <a th:href="@{../tiger/home}">3、@{../tiger/home}</a><br>
-    <a th:href="@{/tiger/home}">4、@{/tiger/home}</a><br>
-    <a th:href="@{https://www.baidu.com}">5、@{https://www.baidu.com}</a><br>
-
-
-
-    <h4>@{...} 携带参数</h4>
-    th:href 是⼀个修饰符属性，将表达式结果设置为标签 href 属性的值，请求地址中携带参数传往服务器是很常见的操作，常用操作如下：
-    1）在 @{...}表达式末尾使用 "()" 设置参数；<br>
-
-    2）多个参数时，使用 "," 隔开<br>
-
-    3）参数值可以使用表达式动态取值。<br>
-    <a th:href="@{userList(id=9527)}">1、@{userList(id=9527)}</a><br>
-    <a th:href="@{userList(id=9527,name=华安)}">2、@{userList(id=9527,name=华安)}</a><br>
-    <a th:href="@{userList(id=9527,name=${username})}">3、@{userList(id=9527,name=${username})}</a><br>
+6）<link type="text/css" rel="stylesheet" th:href="@{/css/home.css}">，@ 以 "/" 开头相对应用根目录，否则是相对当前路径<br>
+<a th:href="@{userList}">1、@{userList}</a><br>
+<a th:href="@{./userList}">2、@{./userList}</a><br>
+<a th:href="@{../tiger/home}">3、@{../tiger/home}</a><br>
+<a th:href="@{/tiger/home}">4、@{/tiger/home}</a><br>
+<a th:href="@{https://www.baidu.com}">5、@{https://www.baidu.com}</a><br>
 
 
-    <h4>文本及其操作</h4>
-    ⽂本⽂字指包含在单引号之间的字符串，它们可以包含任何字符，但如果字符串有空格时，必须使用单引号" ' "包含。
-    <!--中间无空格时，可以不加单引号-->
+
+<h4>@{...} 携带参数</h4>
+th:href 是⼀个修饰符属性，将表达式结果设置为标签 href 属性的值，请求地址中携带参数传往服务器是很常见的操作，常用操作如下：
+1）在 @{...}表达式末尾使用 "()" 设置参数；<br>
+
+2）多个参数时，使用 "," 隔开<br>
+
+3）参数值可以使用表达式动态取值。<br>
+<a th:href="@{userList(id=9527)}">1、@{userList(id=9527)}</a><br>
+<a th:href="@{userList(id=9527,name=华安)}">2、@{userList(id=9527,name=华安)}</a><br>
+<a th:href="@{userList(id=9527,name=${username})}">3、@{userList(id=9527,name=${username})}</a><br>
+
+
+<h4>文本及其操作</h4>
+⽂本⽂字指包含在单引号之间的字符串，它们可以包含任何字符，但如果字符串有空格时，必须使用单引号" ' "包含。
+<!--中间无空格时，可以不加单引号-->
     <p th:text="China">中国</p>
 
     <!--空格属于特殊字符，必须使用单引号包含整个字符串-->
@@ -163,27 +180,160 @@
     <p th:utext="${China}">不会转义</p>
 
 
-
-
+    th:each 循环迭代
+    循环基本用法
+    1、对于信息页面，数据格式是一样时，页面通常都是循环迭代它们，写过 JSP 的 JSTL 的就知道，JSTL 有一个 &lt;c:foreach&gt;，同理 Thymeleaf 也有一个 th:each。作用都是一样的，都是用于遍历数组、List、Set、Map 等数据。<br>
+    2、Thymeleaf  th:each 遍历格式如下：<br>
+        1）th:each="user : ${userList}，意味着对于 ${userList} 结果中的每个元素，循环迭代当前模板⽚段，并使⽤名为”user“的变量作为当前迭代元素来填充模版数据。<br>
+        2）如果被遍历的变量为 null，或者不存在，则直接不会遍历。<br>
+        3）th:each="user : ${userList} 作用域为自己的整个标签内，包括自己，如上所示为 &lt;tr&gt;。<br>
+    3、如下所示为遍历下拉框的代码，因为 th:each 的作用域包括自己，所以遍历与取值都在同一个 &lt;option&gt; 标签中：
+       被迭代变量的值类型<br>
+        1、java.util.List 类型不是可以在 Thymeleaf 中使⽤迭代的唯⼀值类型，下⾯这些类型的对象都可以通过 th:each 进⾏迭代的：<br>
+        1）任何实现 java.util.Iterable 接⼝的对象，其值将被迭代器返回，⽽不需要在内存中缓存所有值。<br>
+        2）任何实现 java.util.Enumeration 接⼝的对象。<br>
+        3）任何实现 java.util.Map 接⼝的对象， 迭代映射时，iter 变量将是 java.util.Map.Entry 类。<br>
+        4）任何数组。<br>
+        5）任何其将被视为包含对象本身的单值列表。<br>
+    获取迭代状态<br>
+         迭代过程中，经常会使用到它的一些迭代状态，如：当前迭代的索引，迭代变量中的元素的总数，当前迭代的是奇数还是偶数，当前是否是第一个元素，当前是否是最后一个元素 等等。
+         在 JSP 的 JSTL 中是 &lt;c:foreach items="${list}" var ="li" varStatus="status"&gt; 里面的 status 属性。
+             使⽤ th:each 时，Thymeleaf 提供了⼀种⽤于跟踪迭代状态的机制：状态变量。状态变量在每个 th:each 属性中定义，并包含以下数据：<br>
+        1）index 属性：当前迭代索引，从0开始<br>
+        2）count 属性：当前的迭代计数，从1开始<br>
+        3）size 属性：迭代变量中元素的总量<br>
+        4）current 属性：每次迭代的 iter 变量，即当前遍历到的元素<br>
+        5）even/odd 布尔属性：当前的迭代是偶数还是奇数。<br>
+        6）first 布尔属性：当前的迭代是否是第⼀个迭代<br>
+        7）last 布尔属性：当前的迭代是否是最后⼀个迭代。<br>
     <table class="table">
         <thead>
             <tr>
+                <th scope="col">序号</th>
                 <th scope="col">天气</th>
                 <th scope="col">温度</th>
                 <th scope="col">提示</th>
                 <th scope="col">日期</th>
+                <th scope="col">记录员</th>
             </tr>
         </thead>
+        <!--迭代状态变量（本示例中的 loopStatus ）在 th:each 属性中通过在变量 user 之后直接写其名称来定义，⽤逗号分隔。 与 iter 变量⼀样，状态变量的作⽤范围也是 th:each 属性的标签定义的代码⽚段中。
+            如果没有显式地设置状态变量，则 Thymeleaf 将始终创建⼀个默认的迭代变量，该状态迭代变量名称为：迭代变量+“Stat”。-->
         <tbody>
-            <tr th:each="bean : ${list}">
-                <th scope="row" th:text="${list.length}"></th>
+        <!-- 遍历集合，如果被遍历的变量 userList 为 null 或者不存在，则不会进行遍历，也不报错-->
+        <!-- 没有显示设置状态变量时，Thymeleaf 默认创建一个 userStat 状态变量，直接使用即可-->
+            <tr th:each="bean,loopStatus:${list}" th:class="${loopStatus.odd}?'odd':'even'">
+                <!-- 显示当前的行序号-->
+                <th scope="row" th:text="${loopStatus.count}"></th>
                 <td th:text="${bean.weather}">weather</td>
                 <td th:text="${bean.temperature}">temperature</td>
                 <td th:text="${bean.tip}">tip</td>
-                <td th:text="${bean.date}">date</td>
+                <!-- 使用dates对象格式化日期-->
+                <td th:text="${#dates.format(bean.date,'yyyy-MM-dd HH:mm:ss')}">date</td>
+                <td th:text="${bean.userName}">userName</td>
             </tr>
         </tbody>
-
     </table>
+
+
+    <h4>条件判断</h4>
+    <h4>th:if</h4>
+    很多时候只有在满⾜某个条件时，才将⼀个模板⽚段显示在结果中，否则不进行显示。比如只有当用户有订单时，才为它显示订单链接，否则不显示。th:if 属性用于满足这个需求：
+    <!--if属性结果为 true，模板会进行显示-->
+    <p th:if="true">th:if="true"</p>
+    <!--if属性结果为 false，模板不会进行显示-->
+    <p th:if="false">th:if="false"</p>
+
+    <!--后台控制器传出数据：model.addAttribute("isMarry", true);-->
+    <p th:if="${isMarry}">已婚</p>
+    th:if 属性不仅只以布尔值作为判断条件，它将按照如下规则判定指定的表达式结果为 true：
+    1）如果表达式结果为布尔值，则为 true 或者 false
+    2）如果表达式的值为 null，th:if 将判定此表达式为 false
+    3）如果值是数字，为 0 时，判断为 false；不为零时，判定为 true
+    4）如果 value 是 String，值为 “false”、“off”、“no” 时，判定为 false，否则判断为 true，字符串为空时，也判断为 true
+    5）如果值不是布尔值，数字，字符或字符串的其它对象，只要不为 null，则判断为 true
+    <!--表达式的结果为布尔类型时，if 直接以它为结果-->
+    <p th:if="true">th:if="true"</p>
+    <!--当表达式结果为null时，则if判定为false-->
+    <p th:if="null">th:if="null"</p>
+    <!--表达式为数字时，不为0，if判定为true,为0,时，if判定为false-->
+    <p th:if="11">th:if="11"</p>
+    <p th:if="0">th:if="0"</p>
+
+    <!--表达式结果为字符串时，如果为 true，则if判定为true；值为 false，则if判定为false-->
+    <!--结果为 off、no 等特殊字符串时，if 判定为false-->
+    <p th:if="'true'">th:if="'true'"</p>
+    <p th:if="'false'">th:if="'false'"</p>
+    <p th:if="'off'">th:if="'off'"</p>
+    <p th:if="'no'">th:if="'no'"</p>
+    <!--表达式结果字符串不为false，off,no时，if判定为true-->
+    <p th:if="'Love China'">th:if="'Love China'"</p>
+
+    <!--后台传输：model.addAttribute("userList", User.getUsers());-->
+    <!--只要 userList 不等于null，则if判定为true，否则为false-->
+    <p th:if="${list}">th:if="${list}"</p>
+
+    <!--后台传输：model.addAttribute("name", "");-->
+    <!--字符串为空时，if判定为 true-->
+    <p th:if="${name}eq''">name 等于空</p>
+    <p th:if="${name}">th:if="${name}"</p>
+    th:unless
+    th:unless 是 th:if 的反向属性，它们判断的规则一致，只是 if 当结果为true 时进行显示，unless 当结果为 false进行显示。
+    <!--unless与if判定规则一致，但是显示条件相反，unless当结果为false时才进行显示-->
+    <p th:unless="false">th:unless="false"</p>
+    <p th:unless="true">th:unless="true"</p>
+
+    <!--后台传输：model.addAttribute("isMarry", true);-->
+    <p th:if="${isMarry}">已婚1</p>
+    <p th:unless="!${isMarry}">已婚2</p>
+
+    th:switch 
+     th:switch / th:case 与 Java 中的 switch 语句等效，有条件地显示匹配的内容。
+     只要其中⼀个 th:case 的值为 true，则同⼀个 switch 语句中的其他 th:case 属性都将被视为 false。当有多个 case 的值为 true 时，则只取第一个。
+     switch 语句的 default 选项指定为 th:case =“*”，即当没有 case 的值为 true 时，将显示default 的内容，如果有多个 default ，则只取第一个。
+    <!--数字类型，匹配其中第一个 case 后，其它的 case 都将视为 false-->
+    <div th:switch="1">
+        <p th:case="0">管理员</p>
+        <p th:case="1">操作员</p>
+        <p th:case="*">未知用户</p>
+    </div>
+
+    <!--数字类型：当没有 case 匹配时，取默认值，当有多个匹配，只取第一个-->
+    <div th:switch="-1">
+        <p th:case="0">管理员</p>
+        <p th:case="*">操作员</p>
+        <p th:case="*">未知用户</p>
+    </div>
+
+    <!--布尔类型，多个case满足时，只取第一个-->
+    <div th:switch="true">
+        <p th:case="true">已婚</p>
+        <p th:case="true">已成年</p>
+        <p th:case="false">未婚</p>
+    </div>
+
+    <!--字符串类型-->
+    <div th:switch="'For China'">
+        <p th:case="'For USA'">美国</p>
+        <p th:case="'For UK'">英国</p>
+        <p th:case="'For China'">中国</p>
+        <p th:case="*">未知国籍</p>
+    </div>
+    <!--引用外部文件-->
+    <div th:insert="~{my/footer:: copy}">插入footer</div>
+
+    <!-- 注意：如果模板片段中应用了其中的样式，则谁引用了模板片段，谁就要导入此样式文件-->
+    <!--<div th:replace="ace/login:: login">插入footer</div>-->
+    <!--<div th:replace="my/index:: index">插入footer</div>-->
+    <!--传值到引用的外部文件中-->
+    <div th:replace="~{my/footer::content(val1=66,val2=88)}">传值</div>
+
+    <h4>参数化片段签名</h4>
+    为了使模板⽚段具有类似函数的功能，th:fragment 定义的⽚段可以指定⼀组参数：<br>
+    于是在 th:insert、th:replace 引用模板片段的时候，就可以传递参数过去：<br>
+
+    &lt;div th:replace="templatename :: frag (${value1},${value2})">...&lt;/div>     //按参数定义时的顺序进行传递<br>
+    &lt;div th:replace="templatename :: frag (onevar=${value1},twovar=${value2})">...&lt;/div>     //按参数名称传递，此时与参数定义的顺序无关<br>
+
 </body>
 </html>
