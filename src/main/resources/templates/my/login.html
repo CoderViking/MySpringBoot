@@ -343,9 +343,12 @@
                     password:password
                 },
                 async:true,
-                success:function(result){
-                    alert("登录成功:"+result);
-                    location.href="/test/index?name="+result.name+"&account="+result.account+"&uid="+result.uid;
+                success:function(data){
+                    // alert("登录成功:"+result);
+                    console.log(data);
+                    if (data=="OK") location.href="/test/index";
+                    return false;
+                    // location.href="/test/index?name="+result.name+"&account="+result.account+"&uid="+result.uid;
                 },
                 error:function(err){
 //                    console.log(err);
