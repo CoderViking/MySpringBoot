@@ -328,16 +328,34 @@
         $('#login').on('click',function () {
             var account = $('#account').val();
             var password = $('#password').val();
-            $.post("/test/singIn",{
-                account:account,
-                password:password
-            },function (data,status) {
-                console.log("数据:"+data+"\n状态:"+status);
-                //var index = data.length-1;
-                //console.log(data[index].id,data[index].name,data[index].sex,data[index].age);
-            });
+//            $.post("/test/singIn",{
+//                account:account,
+//                password:password
+//            },function (data,status) {
+//                console.log("数据:"+data+"\n状态:"+status);
+//                //var index = data.length-1;
+//                //console.log(data[index].id,data[index].name,data[index].sex,data[index].age);
+//            });
+            $.ajax({
+                url:"/test/singIn",
+                data:{
+                    account:account,
+                    password:password
+                },
+                async:true,
+                success:function(result){
+                    alert("登录成功:"+result);
+                    location.href="/test/index?name="+result.name+"&account="+result.account+"&uid="+result.uid;
+                },
+                error:function(err){
+//                    console.log(err);
+//                    alert("错误提示： " + err.status + " " + err.message);
+//                    alert("请检查账号密码是否有误!");
+//                    prompt("请检查账号密码是否有误!");
+                    confirm("请检查账号密码是否有误!");
+            }});
             console.log("登录成功");
-            alert("欢迎登录:"+$('#account').val())
+//            alert("欢迎登录:"+$('#account').val())
         });
 
 
