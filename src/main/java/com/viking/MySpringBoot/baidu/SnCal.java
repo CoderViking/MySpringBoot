@@ -6,6 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
+
 /**
  * Created by yanshuai on 2019/5/23
  * 百度地图api sn计算算法
@@ -85,7 +87,8 @@ public class SnCal {
         // 以get请求为例：http://api.map.baidu.com/geocoder/v2/?address=百度大厦&output=json&ak=yourak，
         // paramsMap中先放入address，再放output，然后放ak，放入顺序必须跟get请求中对应参数的出现顺序保持一致。
 
-        Map<String,String> paramsMap = new LinkedHashMap<>();
+//        Map<String,String> paramsMap = new LinkedHashMap<>();
+        Map<String,String> paramsMap = new TreeMap<>();
         paramsMap.put("address", address);
         paramsMap.put("city","成都市");
         paramsMap.put("ret_coordtype","gcj02ll");

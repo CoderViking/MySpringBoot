@@ -1,5 +1,7 @@
 package com.viking.MySpringBoot.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +16,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("test")
 public class TestController {
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("login")
     public Object beforeLog(){
@@ -24,13 +27,13 @@ public class TestController {
 
     @RequestMapping("singIn")
     public Object login(String account, String password, HttpServletRequest request) throws Exception {
-        System.out.println("登录请求:account="+account+"\tpassword="+password);
-//        model.setViewName("my/index");
+        log.info("登录请求:account="+account+"\tpassword="+password);
         if (account.equals("Admin")&&password.equals("123456")){
             Map<String,String> map = new HashMap<>();
             map.put("name","超级管理员");
             map.put("account",account);
             map.put("uid","5c2f9805-5392-4e13-8a94-ce3f9ff7f620");
+            map.put("page","my/home::index");
             request.getSession().setAttribute("user",map);
             return "OK";
         }else throw new Exception("账号或密码有误");
@@ -39,11 +42,19 @@ public class TestController {
     @SuppressWarnings("unchecked")
     public Object index(HttpServletRequest request){
         Map<String,String> map = (Map<String, String>) request.getSession().getAttribute("user");
+        if (map==null) return new ModelAndView("redirect:/test/login");
         ModelAndView model = new ModelAndView();
         model.addObject("name",map.get("name"));
         model.addObject("account",map.get("account"));
         model.addObject("uid",map.get("uid"));
         model.setViewName("my/index");
+        return model;
+    }
+    @RequestMapping("tables")
+    public Object table(){
+        ModelAndView model = new ModelAndView();
+//        model.addObject("page","home::index");
+        model.setViewName("my/tables");
         return model;
     }
 }

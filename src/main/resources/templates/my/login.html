@@ -346,7 +346,7 @@
                 success:function(data){
                     // alert("登录成功:"+result);
                     console.log(data);
-                    if (data=="OK") location.href="/test/index";
+                    if (data==="OK") location.href="/test/index";
                     return false;
                     // location.href="/test/index?name="+result.name+"&account="+result.account+"&uid="+result.uid;
                 },
@@ -360,8 +360,6 @@
             console.log("登录成功");
 //            alert("欢迎登录:"+$('#account').val())
         });
-
-
     });
 </script>
 </body>

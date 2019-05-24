@@ -1,6 +1,7 @@
 package com.viking.MySpringBoot.baidu;
 
 import com.alibaba.druid.support.json.JSONUtils;
+import com.viking.MySpringBoot.utils.BaiduMapUtils;
 import com.viking.MySpringBoot.utils.HttpClient;
 
 import java.io.IOException;
@@ -10,27 +11,28 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by yanshuai on 2019/5/23
  */
 public class TestBaiDuMapApi {
-    public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
+    public static void main_old(String[] args) throws IOException, NoSuchAlgorithmException {
 //        String address = "http://api.map.baidu.com/geocoder/v2/?address=北京市海淀区上地十街10号&output=json&ak=您的ak&callback=showLocation";
-        String address = "故宫";
+        String address = "湖南省长沙市高新开发区麓谷咸嘉湖西路362号二栋二层";
         String url="http://api.map.baidu.com/geocoder/v2/";
-        String yourak = "";
-        String yoursk = "";
+        String yourak = "YaakxHg9GweLv0ir37vgWiNM2o4bd6fV";
+        String yoursk = "zs9HMBGADldq27b2YZwZChYvKOS72dBE";
         String sn = SnCal.getSn(yourak,yoursk,address);
         HttpClient client  = new HttpClient();
-        Map<String,String> param = new LinkedHashMap<>();//GET请求使用
+        Map<String,String> param = new TreeMap<>();//GET请求使用
         param.put("address",address);
         param.put("city","成都市");
         param.put("ret_coordtype","gcj02ll");
         param.put("output","json");
         param.put("ak",yourak);
         param.put("sn",sn);
-        client.clientGet(url,param);
+        client.clientPost(url,param);
         Map map = client.getMap();
         System.out.println(map);
         Map m = (Map) ((Map) map.get("result")).get("location");
@@ -66,5 +68,20 @@ public class TestBaiDuMapApi {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+    }
+
+    public static void main(String[] args) {
+        String yourak = "YaakxHg9GweLv0ir37vgWiNM2o4bd6fV";
+        String yoursk = "zs9HMBGADldq27b2YZwZChYvKOS72dBE";
+        String apad = "百度";
+        String city = "";
+        try {
+            Map<String, Object> location = BaiduMapUtils.getLocation(yourak, yoursk, apad, city);
+            System.out.println("结果:"+location);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 }
