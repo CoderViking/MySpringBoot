@@ -57,4 +57,8 @@ public class TestController {
         model.setViewName("my/tables");
         return model;
     }
+    @RequestMapping("myIndex")
+    public Object myIndex(){
+        return new ModelAndView("my/myIndex");
+    }
 }
