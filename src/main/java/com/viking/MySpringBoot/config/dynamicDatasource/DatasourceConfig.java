@@ -18,7 +18,7 @@ import java.util.Map;
  * Created by Viking on 2019/5/9
  */
 @Configuration
-@MapperScan(basePackages = "com.viking.MySpringBoot.mapper")
+@MapperScan(basePackages = "com.**.mapper")
 public class DatasourceConfig {
     //数据源1
     @Bean(name = "springboot")

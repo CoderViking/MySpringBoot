@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.viking.MySpringBoot.baidu.mapper.BaiduMapper">
+    <select id="getApadList" resultType="com.viking.MySpringBoot.baidu.entity.Apad">
+        SELECT * FROM  apad ORDER BY  apid ASC
+    </select>
+    <insert id="insertResult" parameterType="java.util.List">
+        INSERT into baidu_address_code (ap,apid,ctr,cty,apad,lat,lng,precise,confidence,comprehension,level)
+        VALUES <foreach collection="param" index="index" separator="," item="item">(#{item.ap},#{item.apid},#{item.ctr},#{item.cty},#{item.apad},
+        #{item.lat},#{item.lng},#{item.precise},#{item.confidence},#{item.comprehension},#{item.level})</foreach>
+    </insert>
+</mapper>

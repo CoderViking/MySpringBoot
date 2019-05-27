@@ -76,6 +76,7 @@ public class BaiduMapUtils {
         System.out.println(client.getStr());
         Map<String,Object> res= new HashMap<>();
         res.put("status",map.get("status"));
+        if (Integer.parseInt(map.get("status")+"")!=0) return new HashMap<>();
         Map<String,Object> result = (Map) map.get("result");
         Map<String,Float> location = (Map<String, Float>) result.get("location");
         res.put("经度",location.get("lng"));
@@ -86,6 +87,13 @@ public class BaiduMapUtils {
         res.put("地址类型",result.get("level"));
         res.put("坐标",location.get("lng")+","+location.get("lat"));
         System.out.println(res);
-        return  res;
+        Map<String,Object> bean = new HashMap<>();
+        bean.put("lng",location.get("lng"));
+        bean.put("lat",location.get("lat"));
+        bean.put("precise",result.get("precise"));
+        bean.put("confidence",result.get("confidence"));
+        bean.put("comprehension",result.get("comprehension"));
+        bean.put("level",result.get("level"));
+        return  bean;
     }
 }
