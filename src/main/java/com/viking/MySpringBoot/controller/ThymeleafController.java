@@ -59,7 +59,7 @@ public class ThymeleafController {
         model.addObject("China","<b>Chian</b>,USA,UK");
         List<Weather> list = mapper.getList();
         model.addObject("list",list);
-        model.setViewName("/my/home");
+        model.setViewName("my/home");
         System.out.println("访问页面");
         return model;
     }

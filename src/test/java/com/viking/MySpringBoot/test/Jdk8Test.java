@@ -31,8 +31,8 @@ public class Jdk8Test {
     }
     @Test
     public void dateTimeFormatTest(){
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL);
-        String format = dateTimeFormatter.format(Instant.now());
-        System.out.println(format);
+//        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL);
+//        String format = dateTimeFormatter.format(Instant.now());
+//        System.out.println(format);
     }
 }

@@ -16,7 +16,7 @@ public class MySpringBootApplication {
 	@RequestMapping("/")
 	public ModelAndView home(){
 		ModelAndView model = new ModelAndView();
-		model.setViewName("/ace/index");
+		model.setViewName("ace/index");
 		return model;
 	}
 
