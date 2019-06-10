@@ -99,10 +99,10 @@ public class MyRestController {
         Map<String,Object> result = new HashMap<>();
         result.put("springBoot",fruitsMapper.getList());
         PageHelper.startPage(1,20);
-        PageInfo<Map> pageInfo = new PageInfo<>(fruitsMapper.getBook());
-        result.put("webSpider",pageInfo);
+//        PageInfo<Map> pageInfo = new PageInfo<>(fruitsMapper.getBook());
+//        result.put("webSpider",pageInfo);
         result.put("springBoot2",fruitsMapper.getList());
-        result.put("webSpider2",fruitsMapper.getBook());
+//        result.put("webSpider2",fruitsMapper.getBook());
         return result;
     }
     @RequestMapping("morse")
