@@ -101,7 +101,7 @@ public class MyRestController {
         PageHelper.startPage(1,20);
 //        PageInfo<Map> pageInfo = new PageInfo<>(fruitsMapper.getBook());
 //        result.put("webSpider",pageInfo);
-        result.put("springBoot2",fruitsMapper.getList());
+        result.put("springBoot2",fruitsMapper.getListFormLinux());
 //        result.put("webSpider2",fruitsMapper.getBook());
         return result;
     }

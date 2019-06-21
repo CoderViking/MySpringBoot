@@ -11,8 +11,11 @@ import java.util.Map;
  * Created by Viking on 2019/5/7
  */
 public interface FruitsMapper {
+    @Datasource
     List<Weather> getList();
-    @Datasource("webspider")
+    @Datasource("localServer")
+    List<Weather> getListFormLinux();
+    @Datasource("linuxServer")
     List<Map> getBook();
     void addWeather(@Param("param") Weather weather);
 }

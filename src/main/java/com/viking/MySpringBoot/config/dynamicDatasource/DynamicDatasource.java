@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class DynamicDatasource extends AbstractRoutingDataSource {
     //默认数据源
-    public static final String DEFAULT = "springboot";
+    public static final String DEFAULT = "linuxServer";
     private static DynamicDatasource instance;
     private static final byte[] lock = new byte[0];
 

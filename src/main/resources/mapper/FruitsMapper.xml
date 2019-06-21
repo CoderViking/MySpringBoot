@@ -6,6 +6,9 @@
     <select id="getList" resultType="com.viking.MySpringBoot.entity.Weather">
         select * from weather
     </select>
+    <select id="getListFormLinux" resultType="com.viking.MySpringBoot.entity.Weather">
+        select * from weather
+    </select>
     <select id="getBook"  resultType="java.util.Map">
         SELECT * FROM  jdbook
     </select>
