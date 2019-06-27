@@ -31,10 +31,10 @@
 			<!--<groupId>org.springframework.boot</groupId>-->
 			<!--<artifactId>spring-boot-starter-data-mongodb</artifactId>-->
 		<!--</dependency>-->
-		<!--<dependency>&lt;!&ndash;redis依赖包&ndash;&gt;-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-data-redis</artifactId>-->
-		<!--</dependency>-->
+		<dependency><!--redis依赖包-->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
 		<dependency><!--web服务依赖包-->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -90,12 +90,12 @@
 			<artifactId> spring-boot-devtools </artifactId>
 			<optional> true </optional>
 		</dependency>
-		<dependency>
+		<dependency><!-- httpClient -->
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<!--<version>4.4.1</version>-->
 		</dependency>
-		<dependency>
+		<dependency><!-- apache提供的的java.lang包的工具类 -->
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.6</version>
@@ -108,6 +108,14 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-surefire-plugin</artifactId>
+			    <version>2.6</version>
+			    <configuration>
+			    <skipTests>true</skipTests>
+			 </configuration>
 			</plugin>
 		</plugins>
 	</build>

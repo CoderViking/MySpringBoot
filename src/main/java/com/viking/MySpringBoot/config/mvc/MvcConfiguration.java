@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * 匿名内部类实现跨域配置
  */
 @Configuration
-public class MyConfiguration {
+public class MvcConfiguration {
 
     @Bean
     public WebMvcConfigurer crossConfigurer(){
