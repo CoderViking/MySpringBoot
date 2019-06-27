@@ -1,10 +1,6 @@
-package com.viking.MySpringBoot.config.dynamicDatasource;
+package com.viking.MySpringBoot.config.datasource;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
-import org.springframework.lang.Nullable;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Viking on 2019/5/9

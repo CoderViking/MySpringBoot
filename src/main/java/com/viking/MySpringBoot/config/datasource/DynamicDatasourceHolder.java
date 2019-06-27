@@ -1,4 +1,4 @@
-package com.viking.MySpringBoot.config.dynamicDatasource;
+package com.viking.MySpringBoot.config.datasource;
 
 /**
  * Created by Viking on 2019/5/9

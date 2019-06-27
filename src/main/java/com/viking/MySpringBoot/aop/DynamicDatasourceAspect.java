@@ -2,7 +2,7 @@ package com.viking.MySpringBoot.aop;
 
 
 import com.viking.MySpringBoot.annation.Datasource;
-import com.viking.MySpringBoot.config.dynamicDatasource.DynamicDatasourceHolder;
+import com.viking.MySpringBoot.config.datasource.DynamicDatasourceHolder;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;

@@ -1,6 +1,6 @@
 package com.viking.MySpringBoot.annation;
 
-import com.viking.MySpringBoot.config.dynamicDatasource.DynamicDatasource;
+import com.viking.MySpringBoot.config.datasource.DynamicDatasource;
 
 import java.lang.annotation.*;
 

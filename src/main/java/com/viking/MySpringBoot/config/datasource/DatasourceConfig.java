@@ -1,4 +1,4 @@
-package com.viking.MySpringBoot.config.dynamicDatasource;
+package com.viking.MySpringBoot.config.datasource;
 
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
