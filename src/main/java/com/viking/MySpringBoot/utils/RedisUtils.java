@@ -71,6 +71,22 @@ public class RedisUtils<V> {
     public String randomKey(){
         return redisTemplate.randomKey();
     }
+    public void multi() {
+        redisTemplate.multi();
+    }
+    public void unwatch() {
+        redisTemplate.unwatch();
+    }
+    public void discard() {
+        redisTemplate.discard();
+    }
+    public void exec() {
+        redisTemplate.exec();
+    }
+    public void watch(Collection<String> keys) {
+        redisTemplate.watch(keys);
+    }
+
     /**################################### String ###################################################*/
     public Object get(final String key){
         return redisTemplate.opsForValue().get(key);
@@ -111,8 +127,13 @@ public class RedisUtils<V> {
     public V replaceValue(final String key, V newValue) {
         return redisTemplate.opsForValue().getAndSet(key, newValue);
     }
-
-
+    public boolean setStrIfAbsent(final String key, V value) {
+        Boolean setIfAbsent = redisTemplate.opsForValue().setIfAbsent(key, value);
+        return setIfAbsent != null && setIfAbsent;
+    }
+    public Integer append(String key, String value) {
+        return redisTemplate.opsForValue().append(key, value);
+    }
 
     /**################################### Hash #####################################################*/
     public void setHash(final String key, String hashKey, V hashValue){
@@ -161,85 +182,19 @@ public class RedisUtils<V> {
         return redisTemplate.<String, Object>opsForHash().putIfAbsent(key, hashKey, hashValue);
     }
 
-    /**################################### other ###################################################*/
-    public void quit(){
-        redisTemplate.execute((RedisCallback<Object>) redisConnection -> {
-            redisConnection.close();
-            return null;
-        });
+    /**################################### Set ###################################################*/
+    @SuppressWarnings("unchecked")
+    public Long addInSet(String key, V ... value) {
+        return  redisTemplate.opsForSet().add(key, value);
     }
-
-
-
-
-
-
-
-    public Boolean setnx(String key, V value) {
-        return redisTemplate.opsForValue().setIfAbsent(key, value);
+    public Set<V> getInSet(final String key){
+        return redisTemplate.opsForSet().members(key);
     }
-
-    public void setex(String key, V value, Long timeout, TimeUnit timeUnit) {
-        redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
-    }
-
-    public void setex(String key, V value, Long offset) {
-        redisTemplate.opsForValue().set(key, value, offset);
-    }
-
-    public void setbit(final String key, final Long offset, final Boolean value) {
-        redisTemplate.execute(new RedisCallback<Object>() {
-            @Override
-            public Object doInRedis(RedisConnection connection) throws DataAccessException {
-                connection.setBit(key.getBytes(), offset, value);
-                return null;
-            }
-        });
-    }
-
-    public Boolean getbit(final String key, final Long offset) {
-        return (Boolean) redisTemplate.execute(new RedisCallback<Boolean>() {
-            @Override
-            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
-                return connection.getBit(key.getBytes(), offset);
-            }
-        });
-    }
-
-    public Integer append(String key, String value) {
-        return redisTemplate.opsForValue().append(key, value);
-    }
-
-    public void multi() {
-        redisTemplate.multi();
-    }
-
-    public void unwatch() {
-        redisTemplate.unwatch();
-    }
-
-    public void discard() {
-        redisTemplate.discard();
-    }
-
-    public void exec() {
-        redisTemplate.exec();
-    }
-
-    public void watch(Collection<String> keys) {
-        redisTemplate.watch(keys);
-    }
-
-    public Long sadd(String key, V value) {
-        return redisTemplate.opsForSet().add(key, value);
-    }
-
-    public Long scard(String key) {
+    public Long sizeInSet(String key) {
         return redisTemplate.opsForSet().size(key);
     }
-
-    public Set<V> sdiff(String key, Collection<String> keys) {
-        return redisTemplate.opsForSet().difference(key, keys);
+    public Set<V> differenceInSet(String key, Collection<String> otherKeys) {
+        return redisTemplate.opsForSet().difference(key, otherKeys);
     }
 
     public void sdiffstore(String key, Collection<String> keys, String destinations) {
@@ -286,6 +241,34 @@ public class RedisUtils<V> {
     public void sunionstore(String key, Collection<String> keys, String destination) {
         redisTemplate.opsForSet().unionAndStore(key, keys, destination);
     }
+    /**################################### other ###################################################*/
+    public void quit(){
+        redisTemplate.execute((RedisCallback<Object>) redisConnection -> {
+            redisConnection.close();
+            return null;
+        });
+    }
+
+
+    public void setbit(final String key, final Long offset, final Boolean value) {
+        redisTemplate.execute(new RedisCallback<Object>() {
+            @Override
+            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+                connection.setBit(key.getBytes(), offset, value);
+                return null;
+            }
+        });
+    }
+
+    public Boolean getbit(final String key, final Long offset) {
+        return (Boolean) redisTemplate.execute(new RedisCallback<Boolean>() {
+            @Override
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+                return connection.getBit(key.getBytes(), offset);
+            }
+        });
+    }
+
 
     public String echo(final String value) {
         return (String) redisTemplate.execute(new RedisCallback<String>() {

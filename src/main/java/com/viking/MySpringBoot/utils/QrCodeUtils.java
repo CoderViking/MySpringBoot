@@ -252,7 +252,7 @@ public class QrCodeUtils {
     public static void main(String[] args){
         String url = "http://2539455mx2.qicp.vip/dlbz/search?name=%E8%8B%B9%E6%9E%9C";
         try{
-            encodeAndGetFile(url,"E:\\FileTest\\img\\zhi.jpg","E:\\FileTest\\img\\","url"+new Random().nextInt(100)+1+".jpg",true);
+            encodeAndGetFile(url,"E:\\FileTest\\img\\url201.jpg","E:\\FileTest\\img\\","url"+new Random().nextInt(100)+1+".jpg",true);
         }catch (Exception e){
             e.printStackTrace();
         }
