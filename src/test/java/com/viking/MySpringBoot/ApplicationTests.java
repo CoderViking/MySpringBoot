@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MySpringBootApplicationTests {
+public class ApplicationTests {
 
     @Autowired
     private RedisUtils<Object> redisUtils;
@@ -19,5 +19,6 @@ public class MySpringBootApplicationTests {
         System.out.println(redisUtils.get("key"));
         redisUtils.delete("key");
         System.out.println(redisUtils.get("key"));
+        System.out.println(redisUtils.exists("key"));
     }
 }
