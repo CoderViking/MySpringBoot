@@ -284,56 +284,47 @@ public class RedisUtils {
     public Double incrementScoreInZset(String key, Object value, Double increment) {
         return redisTemplate.opsForZSet().incrementScore(key, value, increment);
     }
-    public void zinterstore(String key, Collection<String> keys, String destination) {
+    public void intersectAndStoreInZset(String key, Collection<String> keys, String destination) {
         redisTemplate.opsForZSet().intersectAndStore(key, keys, destination);
     }
-
-    public Object zrange(String key, Long start, Long end, Boolean withScore) {
+    public Object rangeWithScoresInZset(String key, Long start, Long end, Boolean withScore) {
         if (withScore != null && withScore) {
             return redisTemplate.opsForZSet().rangeWithScores(key, start, end);
         }
         return redisTemplate.opsForZSet().range(key, start, end);
     }
-
-    public Set<Object> zrangebyscore(String key, Double min, Double max) {
+    public Set<Object> rangeByScoreInZset(String key, Double min, Double max) {
         return redisTemplate.opsForZSet().rangeByScore(key, min, max);
     }
-
-    public Long zrank(String key, Object value) {
+    public Long rankInZset(String key, Object value) {
         return redisTemplate.opsForZSet().rank(key, value);
     }
-
-    public Long zrem(String key, Object value) {
+    public Long removeInZset(String key, Object value) {
         return redisTemplate.opsForZSet().remove(key, value);
     }
-
-    public void zremrangebyrank(String key, Long start, Long end) {
+    public void removeRangeInZset(String key, Long start, Long end) {
         redisTemplate.opsForZSet().removeRange(key, start, end);
     }
-
-    public void zremrangebyscore(String key, Long start, Long end) {
+    public void removeRangeByScoreInZset(String key, Long start, Long end) {
         redisTemplate.opsForZSet().removeRangeByScore(key, start, end);
     }
-
-    public Object zrevrange(String key, Long start, Long end, Boolean withScore) {
+    public Object reverseRangeWithScoresInZset(String key, Long start, Long end, Boolean withScore) {
         if (withScore != null && withScore) {
             return redisTemplate.opsForZSet().reverseRangeWithScores(key, start, end);
         }
 
         return redisTemplate.opsForZSet().reverseRange(key, start, end);
     }
-
-    public Set<Object> zrevrangebyscore(String key, Double min, Double max) {
+    public Set<Object> reverseRangeByScoreInZset(String key, Double min, Double max) {
         return redisTemplate.opsForZSet().reverseRangeByScore(key, min, max);
     }
-
-    public Long zrevrank(String key, Object value) {
+    public Long reverseRankInZset(String key, Object value) {
         return redisTemplate.opsForZSet().reverseRank(key, value);
     }
-
-    public void zunionstore(String key, Collection<String> keys, String destination) {
+    public void unionAndStoreInZset(String key, Collection<String> keys, String destination) {
         redisTemplate.opsForZSet().unionAndStore(key, keys, destination);
     }
+
     /**################################### List ###################################################*/
     public Object leftPopInList(String key) {
         return redisTemplate.opsForList().leftPop(key);
@@ -430,10 +421,6 @@ public class RedisUtils {
     }
     public void publish(String channel, Object message) {
         redisTemplate.convertAndSend(channel, message);
-    }
-
-    public Boolean pexpire(String key, Long timeout) {
-        return redisTemplate.expire(key, timeout, TimeUnit.MILLISECONDS);
     }
 
 
