@@ -6,8 +6,10 @@ import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.data.redis.core.query.SortQueryBuilder;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -19,9 +21,9 @@ import java.util.concurrent.TimeUnit;
  * redis工具类
  */
 @Component
-public class RedisUtils {
+public class RedisUtils<V> {
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private RedisTemplate<String, V> redisTemplate;
 
 
     @PostConstruct
@@ -65,7 +67,7 @@ public class RedisUtils {
         DataType type = redisTemplate.type(key);
         return type == null ? null : type.code();
     }
-    public List<Object> sort(String key){
+    public List<V> sort(String key){
         return redisTemplate.sort(SortQueryBuilder.sort(key).build());
     }
     public String randomKey(){
@@ -101,21 +103,33 @@ public class RedisUtils {
     public Boolean renameIfAbsent(String key, String value) {
         return redisTemplate.renameIfAbsent(key, value);
     }
+//    public List<Object> pipeLine(List<V>  list){
+//        return redisTemplate.executePipelined(new RedisCallback<V>() {
+//            @Nullable
+//            @Override
+//            public V doInRedis(RedisConnection redisConnection) throws DataAccessException {
+//                for (Object o : list) {
+//                    redisConnection.get()
+//                }
+//                return null;
+//            }
+//        });
+//    }
 
     /**################################### String ###################################################*/
     public Object get(final String key){
         return redisTemplate.opsForValue().get(key);
     }
-    public void set(final String key, Object value){
+    public void set(final String key, V value){
         redisTemplate.opsForValue().set(key,value);
     }
-    public void set(final String key,Object value,long seconds){
+    public void set(final String key,V value,long seconds){
         redisTemplate.opsForValue().set(key,value,seconds,TimeUnit.SECONDS);
     }
-    public void multiSet(final Map<String,Object> map){
+    public void multiSet(final Map<String,V> map){
         redisTemplate.opsForValue().multiSet(map);
     }
-    public void reset(final String key, Object value){
+    public void reset(final String key, V value){
         redisTemplate.opsForValue().getAndSet(key, value);
     }
     public Long incrementOne(final String key) {
@@ -130,19 +144,19 @@ public class RedisUtils {
     public Long strLength(final String key) {
         return redisTemplate.opsForValue().size(key);
     }
-    public List<Object> strMultiGet(Collection<String> keys) {
+    public List<V> strMultiGet(Collection<String> keys) {
         return redisTemplate.opsForValue().multiGet(keys);
     }
-    public void setStrMulti(Map<String, Object> map) {
+    public void setStrMulti(Map<String, V> map) {
         redisTemplate.opsForValue().multiSet(map);
     }
-    public void setStrMultiIfAbsent(Map<String, Object> map) {
+    public void setStrMultiIfAbsent(Map<String, V> map) {
         redisTemplate.opsForValue().multiSetIfAbsent(map);
     }
-    public Object replaceValue(final String key, Object newValue) {
+    public Object replaceValue(final String key, V newValue) {
         return redisTemplate.opsForValue().getAndSet(key, newValue);
     }
-    public boolean setStrIfAbsent(final String key, Object value) {
+    public boolean setStrIfAbsent(final String key, V value) {
         Boolean setIfAbsent = redisTemplate.opsForValue().setIfAbsent(key, value);
         return setIfAbsent != null && setIfAbsent;
     }
@@ -199,10 +213,10 @@ public class RedisUtils {
 
     /**################################### Set ###################################################*/
     @SuppressWarnings("unchecked")
-    public Long addInSet(String key, Object ... value) {
+    public Long addInSet(String key, V ... value) {
         return  redisTemplate.opsForSet().add(key, value);
     }
-    public Set<Object> getInSet(final String key){
+    public Set<V> getInSet(final String key){
         return redisTemplate.opsForSet().members(key);
     }
     public Long sizeInSet(String key) {
@@ -214,7 +228,7 @@ public class RedisUtils {
      * @param otherKeys 其他keys
      * @return 不同的set集合
      */
-    public Set<Object> differenceInSet(String key, Collection<String> otherKeys) {
+    public Set<V> differenceInSet(String key, Collection<String> otherKeys) {
         return redisTemplate.opsForSet().difference(key, otherKeys);
     }
     /**
@@ -233,7 +247,7 @@ public class RedisUtils {
      * @param otherKeys 其他keys
      * @return 相交集合
      */
-    public Set<Object> intersectInSet(String key, Collection<String> otherKeys) {
+    public Set<V> intersectInSet(String key, Collection<String> otherKeys) {
         return redisTemplate.opsForSet().intersect(key, otherKeys);
     }
     /**
@@ -249,10 +263,10 @@ public class RedisUtils {
     public Boolean isMemberInSet(String key, Object value) {
         return redisTemplate.opsForSet().isMember(key, value);
     }
-    public Set<Object> elementsInSet(String key) {
+    public Set<V> elementsInSet(String key) {
         return redisTemplate.opsForSet().members(key);
     }
-    public Boolean moveToDestInSet(String key, Object value, String destKey) {
+    public Boolean moveToDestInSet(String key, V value, String destKey) {
         return redisTemplate.opsForSet().move(key, value, destKey);
     }
     public Object popInSet(String key) {
@@ -264,7 +278,7 @@ public class RedisUtils {
     public Long deleteInSet(String key, Object value) {
         return redisTemplate.opsForSet().remove(key, value);
     }
-    public Set<Object> unionInSet(String key, Collection<String> otherKeys) {
+    public Set<V> unionInSet(String key, Collection<String> otherKeys) {
         return redisTemplate.opsForSet().union(key, otherKeys);
     }
     public void unionAndStoreInSet(String key, Collection<String> otherKeys, String destKey) {
@@ -272,7 +286,7 @@ public class RedisUtils {
     }
 
     /**################################### Zset ###################################################*/
-    public Boolean addInZset(String key, Object value, Double score) {
+    public Boolean addInZset(String key, V value, Double score) {
         return redisTemplate.opsForZSet().add(key, value, score);
     }
     public Long sizeInZset(String key) {
@@ -281,7 +295,7 @@ public class RedisUtils {
     public Long countInZset(String key, Double min, Double max) {
         return redisTemplate.opsForZSet().count(key, min, max);
     }
-    public Double incrementScoreInZset(String key, Object value, Double increment) {
+    public Double incrementScoreInZset(String key, V value, Double increment) {
         return redisTemplate.opsForZSet().incrementScore(key, value, increment);
     }
     public void intersectAndStoreInZset(String key, Collection<String> keys, String destination) {
@@ -293,7 +307,7 @@ public class RedisUtils {
         }
         return redisTemplate.opsForZSet().range(key, start, end);
     }
-    public Set<Object> rangeByScoreInZset(String key, Double min, Double max) {
+    public Set<V> rangeByScoreInZset(String key, Double min, Double max) {
         return redisTemplate.opsForZSet().rangeByScore(key, min, max);
     }
     public Long rankInZset(String key, Object value) {
@@ -315,7 +329,7 @@ public class RedisUtils {
 
         return redisTemplate.opsForZSet().reverseRange(key, start, end);
     }
-    public Set<Object> reverseRangeByScoreInZset(String key, Double min, Double max) {
+    public Set<V> reverseRangeByScoreInZset(String key, Double min, Double max) {
         return redisTemplate.opsForZSet().reverseRangeByScore(key, min, max);
     }
     public Long reverseRankInZset(String key, Object value) {
@@ -326,6 +340,7 @@ public class RedisUtils {
     }
 
     /**################################### List ###################################################*/
+
     public Object leftPopInList(String key) {
         return redisTemplate.opsForList().leftPop(key);
     }
@@ -341,7 +356,7 @@ public class RedisUtils {
     public Object indexInList(String key, long index) {
         return redisTemplate.opsForList().index(key, index);
     }
-    public Long linsert(String key, Object value, Object pivot, boolean isBefore) {
+    public Long linsert(String key, V value, V pivot, boolean isBefore) {
         if (isBefore) {
             return redisTemplate.opsForList().leftPush(key, pivot, value);
         } else{
@@ -357,26 +372,32 @@ public class RedisUtils {
     public Long sizeInList(String key) {
         return redisTemplate.opsForList().size(key);
     }
-    public List<Object> rangeInList(String key, long start, long end) {
+    public List<V> rangeInList(String key, long start, long end) {
         return redisTemplate.opsForList().range(key, start, end);
     }
     public Long removeInList(String key, Object value, Long count) {
         return redisTemplate.opsForList().remove(key, count, value);
     }
-    public void setInList(String key, Object value, Long index) {
+    public void setInList(String key, V value, Long index) {
         redisTemplate.opsForList().set(key, index, value);
     }
     public void trimInList(String key, Long start, Long end) {
         redisTemplate.opsForList().trim(key, start, end);
     }
-    public Long rightPushInList(String key, Object value) {
+    public Long rightPushInList(String key, V value) {
         return redisTemplate.opsForList().rightPush(key, value);
     }
-    public Long rightPushIfPresentInList(String key, Object value) {
+    public Long rightPushIfPresentInList(String key, V value) {
         return redisTemplate.opsForList().rightPushIfPresent(key, value);
     }
-    public Long leftPushInList(String key, Object value) {
+    public Long leftPushInList(String key, V value) {
         return redisTemplate.opsForList().leftPush(key, value);
+    }
+    public Long leftPushAllInList(String key, Collection<V> value) {
+        return redisTemplate.opsForList().leftPushAll(key, value);
+    }
+    public Long leftPushAllInList(String key, V ... values) {
+        return redisTemplate.opsForList().leftPushAll(key, values);
     }
 
     /**################################### other ###################################################*/
