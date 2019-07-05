@@ -5,14 +5,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.redis.core.RedisOperations;
-import org.springframework.data.redis.core.SessionCallback;
-import org.springframework.lang.Nullable;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -43,7 +38,7 @@ public class ApplicationTests {
         myList.add("listHAHAHA");myList.add("myListHEIEHIEHIEI");myList.add("listHAHAHA");
 //        System.out.println("pipeLine:"+redisUtils.pipeLine(myList));
         Long l1 = redisUtils.leftPushAllInList("myListKey", myList);
-        Long l2 = redisUtils.leftPushAllInList("myListKey1", "HAHAHA","heiheihei","hehehe","HAHAHA");
+        Long l2 = redisUtils.leftPushAllInList("myListKey1", "HAHAHA","heiheihei","hehehe","1");
         System.out.println("leftPush:"+redisUtils.rangeInList("myListKey",0,-1));
         System.out.println("leftPush1:"+redisUtils.rangeInList("myListKey1",0,-1));
         redisUtils.delete("myListKey");
@@ -52,6 +47,6 @@ public class ApplicationTests {
         redisUtils.rightPushInList("myList","listHAHAHA");
         redisUtils.rightPushInList("myList","myListHEIEHIEHIEI");
         redisUtils.rightPushInList("myList","listHAHAHA");
-        System.out.println("myList:"+redisUtils.rangeInList("myList",0,redisUtils.sizeInList("myList")));
+        System.out.println("myList:"+redisUtils.rangeInList("myList",0,-1));
     }
 }
