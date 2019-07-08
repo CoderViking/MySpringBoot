@@ -19,7 +19,6 @@ public class SecurityUtil {
             MessageDigest mdTemp = MessageDigest.getInstance("SHA1");
             mdTemp.update(str.getBytes("UTF-8"));
 
-
             byte[] md = mdTemp.digest();
             int j = md.length;
             char buf[] = new char[j * 2];

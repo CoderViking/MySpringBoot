@@ -110,8 +110,8 @@ public class WeChatUtil {
     /**
      * 获取微信用户是否订阅公众号
      * @param accessToken token
-     * @param openId openid
-     * @return 微信服务器返回值
+     * @param openId 微信用户openid
+     * @return 返回值json包
      */
     public static JSONObject checkSubscribe(String accessToken, String openId){
         String result = null;
@@ -185,11 +185,15 @@ public class WeChatUtil {
             sb.append(key).append("=").append(map.get(key)).append("&");
         }
         //去掉最后一个&符号
-        String temp = sb.substring(0,sb.length()-1);
+        String string1 = sb.substring(0,sb.length()-1);
         //使用sha1加密
-        String signature = SecurityUtil.SHA1(temp);
-        return signature;
+        return SecurityUtil.SHA1(string1);
     }
+
+    /**
+     * 获取access_token和jsapi_ticket两个会快速过期的凭据
+     * @return 数据封装map
+     */
     public static Map<String,Object> getTokenAndTicket(){
         try {
             String accessToken = getAccessToken();
@@ -205,6 +209,13 @@ public class WeChatUtil {
         }
         throw new SimpleException("获取access_token失败");
     }
+
+    /**
+     * 生成签名
+     * @param ticket jsapi_ticket
+     * @param url 页面url
+     * @return 签名结果封装map
+     */
     public static Map<String,Object> createSignature(String ticket, String url){
         try {
             Long timeStamp = new Date().getTime();

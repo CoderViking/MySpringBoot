@@ -74,7 +74,6 @@ public class HttpRequestUtil {
      * @throws Exception
      */
     public static String doPost(String url, Map parameterMap) throws Exception {
-
         /* Translate parameter map to parameter date string */
         StringBuffer parameterBuffer = new StringBuffer();
         if (parameterMap != null) {
@@ -88,7 +87,6 @@ public class HttpRequestUtil {
                 } else {
                     value = "";
                 }
-
                 parameterBuffer.append(key).append("=").append(value);
                 if (iterator.hasNext()) {
                     parameterBuffer.append("&");
@@ -97,7 +95,6 @@ public class HttpRequestUtil {
         }
 
         URL localURL = new URL(url);
-
         URLConnection connection = openConnection(localURL);
         HttpURLConnection httpURLConnection = (HttpURLConnection)connection;
 
@@ -135,27 +132,21 @@ public class HttpRequestUtil {
             }
 
         } finally {
-
             if (outputStreamWriter != null) {
                 outputStreamWriter.close();
             }
-
             if (outputStream != null) {
                 outputStream.close();
             }
-
             if (reader != null) {
                 reader.close();
             }
-
             if (inputStreamReader != null) {
                 inputStreamReader.close();
             }
-
             if (inputStream != null) {
                 inputStream.close();
             }
-
         }
 
         return resultBuffer.toString();
@@ -175,15 +166,12 @@ public class HttpRequestUtil {
      * Render request according setting
      */
     private static void renderRequest(URLConnection connection) {
-
         if (connectTimeout != null) {
             connection.setConnectTimeout(connectTimeout);
         }
-
         if (socketTimeout != null) {
             connection.setReadTimeout(socketTimeout);
         }
-
     }
     public Integer getConnectTimeout() {
         return connectTimeout;
