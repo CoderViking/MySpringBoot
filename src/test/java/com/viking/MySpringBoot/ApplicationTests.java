@@ -41,7 +41,13 @@ public class ApplicationTests {
         Long l2 = redisUtils.leftPushAllInList("myListKey1", "HAHAHA","heiheihei","hehehe","1");
         System.out.println("leftPush:"+redisUtils.rangeInList("myListKey",0,-1));
         System.out.println("leftPush1:"+redisUtils.rangeInList("myListKey1",0,-1));
-        redisUtils.delete("myListKey");
+//        redisUtils.delete("myListKey");
+        redisUtils.setExpire("myListKey",5L);
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("leftPush:"+redisUtils.rangeInList("myListKey",0,-1));
         System.out.println("leftPush1:"+redisUtils.rangeInList("myListKey1",0,-1));
         redisUtils.rightPushInList("myList","listHAHAHA");
