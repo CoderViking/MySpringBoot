@@ -1,5 +1,6 @@
 package com.viking.MySpringBoot.controller;
 
+import com.viking.MySpringBoot.exception.SimpleException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +38,7 @@ public class TestController {
             map.put("page","my/home::index");
             request.getSession().setAttribute("user",map);
             return "OK";
-        }else throw new Exception("账号或密码有误");
+        }else throw new SimpleException("账号或密码有误");
     }
     @RequestMapping("index")
     @SuppressWarnings("unchecked")
@@ -45,10 +46,10 @@ public class TestController {
         Map<String,String> map = (Map<String, String>) request.getSession().getAttribute("user");
         if (map==null) return new ModelAndView("redirect:/test/login");
         ModelAndView model = new ModelAndView();
-        model.addObject("name",map.get("name"));
+        model.addObject("username",map.get("name"));
         model.addObject("account",map.get("account"));
         model.addObject("uid",map.get("uid"));
-        model.setViewName("my/index");
+        model.setViewName("my/myIndex");
         return model;
     }
     @RequestMapping("tables")
