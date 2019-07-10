@@ -7,29 +7,11 @@
     <meta name="description" content="overview &amp; stats" /><!--网页的描述，是给搜索引擎看的-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" /><!--css样式像素标准参考:https://blog.csdn.net/rucwang/article/details/79050397-->
     <!--导入CSS样式文件-->
-    <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/font-awesome/4.5.0/css/font-awesome.min.css" />
-
-    <!-- page specific plugin styles -->
-
-    <!-- text fonts -->
-    <link rel="stylesheet" href="/css/fonts.googleapis.com.css" />
-
-    <!-- ace styles -->
-    <link rel="stylesheet" href="/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-
+    <link rel="stylesheet" href="/css/my/index.css">
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="/css/ace-part2.min.css" class="ace-main-stylesheet" />
-    <![endif]-->
-    <link rel="stylesheet" href="/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="/css/ace-rtl.min.css" />
-
-    <!--[if lte IE 9]>
     <link rel="stylesheet" href="/css/ace-ie.min.css" />
     <![endif]-->
-
-    <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
     <script src="/js/ace-extra.min.js"></script>
@@ -43,7 +25,7 @@
 </head>
 <body class="no-skin">
     <!-- 引入头部开始 -->
-    <div class = "top-bar"></div>
+    <div th:insert="~{/my/public/top-bar::top-bar(${username})}"></div>
     <!-- 引入头部结束 -->
 
     <!--主页面-->
@@ -118,7 +100,7 @@
                             <b class="arrow"></b>
                             <ul class="submenu">
                                 <li class="">
-                                    <a href="/my/top-menu.html">
+                                    <a href="/my/top-menu">
                                         <i class="menu-icon fa fa-caret-right"></i>
                                         Top Menu
                                     </a>
@@ -500,72 +482,9 @@
 
                 <div class="page-content">
                     <!-- 主页面右侧伸缩悬窗 -->
-                    <div class="ace-settings-container" id="ace-settings-container">
-                        <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-                            <i class="ace-icon fa fa-cog bigger-130"></i>
-                        </div>
-
-                        <div class="ace-settings-box clearfix" id="ace-settings-box">
-                            <div class="pull-left width-50">
-                                <div class="ace-settings-item">
-                                    <div class="pull-left">
-                                        <select id="skin-colorpicker" class="hide">
-                                            <option data-skin="no-skin" value="#438EB9">#438EB9</option>
-                                            <option data-skin="skin-1" value="#222A2D">#222A2D</option>
-                                            <option data-skin="skin-2" value="#C6487E">#C6487E</option>
-                                            <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-                                        </select>
-                                    </div>
-                                    <span>&nbsp; 选择皮肤</span>
-                                </div>
-
-                                <div class="ace-settings-item">
-                                    <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
-                                    <label class="lbl" for="ace-settings-navbar"> 固定导航栏</label>
-                                </div>
-
-                                <div class="ace-settings-item">
-                                    <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
-                                    <label class="lbl" for="ace-settings-sidebar"> 固定侧边栏</label>
-                                </div>
-
-                                <div class="ace-settings-item">
-                                    <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
-                                    <label class="lbl" for="ace-settings-breadcrumbs"> 固定面包屑</label>
-                                </div>
-
-                                <div class="ace-settings-item">
-                                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
-                                    <label class="lbl" for="ace-settings-rtl"> 从右向左</label>
-                                </div>
-
-                                <div class="ace-settings-item">
-                                    <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
-                                    <label class="lbl" for="ace-settings-add-container">
-                                        容器内敛
-                                        <!--<b>.container</b>-->
-                                    </label>
-                                </div>
-                            </div><!-- /.pull-left -->
-
-                            <div class="pull-left width-50">
-                                <div class="ace-settings-item">
-                                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
-                                    <label class="lbl" for="ace-settings-hover"> 子菜单悬空</label>
-                                </div>
-
-                                <div class="ace-settings-item">
-                                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
-                                    <label class="lbl" for="ace-settings-compact"> 收缩侧边栏</label>
-                                </div>
-
-                                <div class="ace-settings-item">
-                                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
-                                    <label class="lbl" for="ace-settings-highlight"> 改变激活菜单样式</label>
-                                </div>
-                            </div><!-- /.pull-left -->
-                        </div><!-- /.ace-settings-box -->
-                    </div><!-- /.ace-settings-container -->
+                    <!-- 引入主页面右侧伸缩悬窗开始 -->
+                    <div th:insert="~{/my/public/setting-container::#ace-settings-container}"></div>
+                    <!-- 引入主页面右侧伸缩悬窗结束 -->
 
                     <div class="page-header">
                         <h1>
@@ -1731,9 +1650,9 @@
     <script type="text/javascript">
         jQuery(function($) {
             // 引入头部
-            $(document).ready(function(){
-                $('.top-bar').load("/my/public/top-bar.html");
-            });
+//            $(document).ready(function(){
+//                $('.top-bar').load("/my/public/top-bar.html");
+//            });
             $('#query').on('click',function () {
                 $('#pageContent').attr
             });

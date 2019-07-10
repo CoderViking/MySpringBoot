@@ -60,7 +60,11 @@ public class TestController {
         return model;
     }
     @RequestMapping("myIndex")
-    public Object myIndex(){
-        return new ModelAndView("my/myIndex");
+    @SuppressWarnings("unchecked")
+    public Object myIndex(HttpServletRequest request){
+        ModelAndView model = (ModelAndView)request.getSession().getAttribute("user");
+        if (null == model) throw new SimpleException("请先登录后再操作");
+        model.setViewName("/my/myIndex");
+        return model;
     }
 }

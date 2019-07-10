@@ -286,7 +286,7 @@
 <script src="/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 
-<!--layer-->
+<!--layer 注:必须在jquery包的后面导入-->
 <script src="/layer/layer.js"></script>
 
 <script type="text/javascript">
@@ -332,45 +332,26 @@
         $('#login').on('click',function () {
             var account = $('#account').val();
             var password = $('#password').val();
-//            $.post("/test/singIn",{
-//                account:account,
-//                password:password
-//            },function (data,status) {
-//                console.log("数据:"+data+"\n状态:"+status);
-//                //var index = data.length-1;
-//                //console.log(data[index].id,data[index].name,data[index].sex,data[index].age);
-//            });
             $.ajax({
-                url:"/test/singIn",
+                type: "post",
+                url:"/user/login",
                 data:{
                     account:account,
                     password:password
                 },
                 async:true,
                 dataType:"json",
-                success:function(data){
-                    // alert("登录成功:"+result);
-                    console.log(data);
-                    if (data==="OK") location.href="/test/index";
+                success:function(res){
+                    console.log("success:"+res.data);
+                    if ("success"===res.data) location.href = "/my/myIndex";
+                    else layer.msg(res.msg, {icon: 5});
                     return false;
-                    // location.href="/test/index?name="+result.name+"&account="+result.account+"&uid="+result.uid;
                 },
-                error:function(err){
-                    console.log(err);
-                   layer.alert("错误提示： " + err.status + " " + err.message);
-//                    alert("请检查账号密码是否有误!");
-//                    prompt("请检查账号密码是否有误!");
-//                    confirm("请检查账号密码是否有误!");
-//                    layer.alert("请检查账号密码是否有误!", {icon: 2});
-//                    layer.msg('请检查账号密码是否有误', function(){
-//                        //关闭后的操作
-//                    });
-//                    layer.msg("", function(){
-//                        //关闭后的操作
-//                    });
+                error:function(err){//
+                    console.log("error:"+err);
+                    layer.msg(err.msg, {icon: 5});
                 }});
-            console.log("登录成功");
-//            alert("欢迎登录:"+$('#account').val())
+            console.log("请求成功");
         });
     });
 </script>
