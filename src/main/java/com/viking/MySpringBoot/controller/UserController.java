@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -23,14 +24,14 @@ public class UserController {
 
     @RequestMapping("login")
     @ResponseBody
-    public Object login(String account, String password, HttpServletRequest request){
+    public Object login(String account, String password, HttpSession session){
         log.info("登录请求:account="+account+"\tpassword="+password);
         if (account.length() >= 3 && password.length() >= 6){
             ModelAndView model = new ModelAndView();
             model.addObject("username","超级管理员");
             model.addObject("account",account);
             model.addObject("uid","5c2f9805-5392-4e13-8a94-ce3f9ff7f620");
-            request.getSession().setAttribute("user",model.getModel());
+            session.setAttribute("user",model.getModel());
             return ResponseModel.setModel("success");
         }return ResponseModel.setErrModel("账号或密码错误");
     }
@@ -38,7 +39,7 @@ public class UserController {
     @SuppressWarnings("unchecked")
     public Object index(Map<String,Object> map,HttpServletRequest request){
         Map<String,Object> model = (Map<String,Object>) request.getSession().getAttribute("user");
-        if (null == model) return "/my/login";
+//        if (null == model) return "/my/login";
         map.putAll(model);
         return "/my/myIndex";
     }

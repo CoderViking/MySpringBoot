@@ -347,9 +347,10 @@
                     else layer.msg(res.msg, {icon: 5});
                     return false;
                 },
-                error:function(err){//
+                error:function(err){
                     console.log("error:"+err);
-                    layer.msg(err.msg, {icon: 5});
+                    if ("success"===err.data) location.href = "/my/myIndex";
+                    else layer.msg(err.msg, {icon: 5});
                 }});
             console.log("请求成功");
         });
