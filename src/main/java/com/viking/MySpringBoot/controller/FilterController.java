@@ -31,5 +31,9 @@ public class FilterController {
     public Object myPublicFilter(@PathVariable String name){
         return "my/public/"+name;
     }
+    @RequestMapping("login")
+    public String redirectToLogin(){
+        return "redirect:/my/login";
+    }
 
 }

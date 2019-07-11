@@ -298,7 +298,7 @@
             </div><!-- /.navbar-container -->
         </div><!--头部结束-->
         <!-- side-bar 左侧菜单栏 -->
-        <div id="side-bar" class="sidebar responsive ace-save-state">
+        <div th:fragment="side-bar" id="side-bar" class="sidebar responsive ace-save-state">
             <script type="text/javascript">
                 try{ace.settings.loadState('sidebar')}catch(e){}
             </script>
@@ -371,14 +371,14 @@
                                     <b class="arrow"></b>
                                 </li>
                                 <li class="">
-                                    <a href="#">
+                                    <a href="/my/two-menu-1">
                                         <i class="menu-icon fa fa-caret-right"></i>
                                         Two Menus 1
                                     </a>
                                     <b class="arrow"></b>
                                 </li>
                                 <li class="">
-                                    <a href="#">
+                                    <a href="/my/two-menu-2">
                                         <i class="menu-icon fa fa-caret-right"></i>
                                         Two Menus 2
                                     </a>
@@ -504,7 +504,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="">
+                <li class="" th:class="${activeUriFirst=='Tables' ? 'active open' : ''}">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-list"></i>
                         <span class="menu-text"> Tables </span>
@@ -512,15 +512,22 @@
                     </a>
                     <b class="arrow"></b>
                     <ul class="submenu">
-                        <li class="">
-                            <a href="#">
+                        <li class="" th:class="${activeUriSecond=='SimpleAndDynamic' ? 'active' : ''}">
+                            <a href="#" th:href="@{/my/tables}">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Simple &amp; Dynamic
                             </a>
                             <b class="arrow"></b>
                         </li>
-                        <li class="">
-                            <a href="#">
+                        <li class="" th:class="${activeUriSecond=='Custom Table' ? 'active' : ''}">
+                            <a href="#" th:href="@{/my/custom-table}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Custom &amp; Table
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="" th:class="${activeUriSecond=='jqgrid' ? 'active' : ''}">
+                            <a href="#" th:href="@{/my/jqgrid}">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 jqGrid plugin
                             </a>
@@ -719,5 +726,62 @@
                 <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
             </div>
         </div><!--左侧导航菜单列表结束-->
+        <!-- 面包屑 -->
+        <div th:fragment="breadcrumbs" id="breadcrumbs" class="breadcrumbs ace-save-state">
+            <!--导航路径展示列表-->
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">主页</a>
+                </li>
+                <!-- 中间的父级菜单使用a标签链接模式显示 -->
+                <li th:class="${titleFirst} != null?'':'hidden'">
+                    <a th:href="${titleFirstUri}==null?'#':@{(${titleFirstUri})}" th:text="${titleFirst}">父级菜单</a>
+                </li>
+                <li th:class="${titleSecond} != null?'':'hidden'">
+                    <a th:href="${titleSecondUri}==null?'#':@{(${titleSecondUri})}" th:text="${titleSecond}">父级菜单</a>
+                </li>
+                <li th:class="${titleThird} != null?'':'hidden'">
+                    <a th:href="${titleThirdUri}==null?'#':@{(${titleThirdUri})}" th:text="${titleThird}">父级菜单</a>
+                </li>
+                <!-- 显示当前页面菜单名称 -->
+                <li class="active" th:text="${titleLast}" th:class="${titleLast} != null?'active':'hidden'">当前菜单</li>
+            </ul><!-- /.breadcrumb -->
+            <!--搜索框-->
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input id="nav-search-input"  type="text" class="nav-search-input" placeholder="Search ..."autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+        <!-- 页脚 -->
+        <div th:fragment="footer" class="footer" id="footer">
+            <div class="footer-inner">
+                <div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">天刃7号</span>
+                            The Good Thymes Virtual Grocery &copy; 2019-2020 一个自定义的后台管理系统模板
+						</span>
+
+                    &nbsp; &nbsp;
+                    <span class="action-buttons">
+							<a href="#">
+								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+							</a>
+
+							<a href="#">
+								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+							</a>
+
+							<a href="#">
+								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+							</a>
+						</span>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

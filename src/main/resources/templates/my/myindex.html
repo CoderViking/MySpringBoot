@@ -26,7 +26,6 @@
 <body class="no-skin">
     <!-- 引入头部开始 -->
     <div th:insert="~{/my/commons/bars::top-bar(${username})}"></div>
-    <!-- 引入头部结束 -->
 
     <!--主页面-->
     <div id="main-container" class="main-container ace-save-state">
@@ -39,33 +38,14 @@
         <!--导航菜单右侧主页面-->
         <div class="main-content">
             <div class="main-content-inner">
-                <!--内容页面头部-->
-                <div id="breadcrumbs" class="breadcrumbs ace-save-state">
-                    <!--导航路径展示列表-->
-                    <ul class="breadcrumb">
-                        <li>
-                            <i class="ace-icon fa fa-home home-icon"></i>
-                            <a href="#">主页</a>
-                        </li>
-                        <li class="active">数据指示板</li>
-                    </ul><!-- /.breadcrumb -->
-                    <!--搜索框-->
-                    <div class="nav-search" id="nav-search">
-                        <form class="form-search">
-								<span class="input-icon">
-									<input id="nav-search-input"  type="text" class="nav-search-input" placeholder="Search ..."autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-                        </form>
-                    </div><!-- /.nav-search -->
-                </div>
+                <!--引入面包屑 -->
+                <div th:replace="/my/commons/bars::breadcrumbs(titleLast='数据指示板')"></div>
 
                 <div class="page-content">
-                    <!-- 主页面右侧伸缩悬窗 -->
-                    <!-- 引入主页面右侧伸缩悬窗开始 -->
+                    <!-- 引入主页面右侧伸缩悬窗 -->
                     <div th:insert="~{/my/commons/setting-container::#ace-settings-container}"></div>
-                    <!-- 引入主页面右侧伸缩悬窗结束 -->
 
+                    <!-- 页面头部 -->
                     <div class="page-header">
                         <h1>
                             数据指示板
@@ -1170,31 +1150,8 @@
             </div>
         </div><!-- /.main-content -->
 
-        <div class="footer">
-            <div class="footer-inner">
-                <div class="footer-content">
-						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application &copy; 2013-2014
-						</span>
-
-                    &nbsp; &nbsp;
-                    <span class="action-buttons">
-							<a href="#">
-								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-							</a>
-
-							<a href="#">
-								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-							</a>
-
-							<a href="#">
-								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-							</a>
-						</span>
-                </div>
-            </div>
-        </div>
+        <!-- 引入页脚部分 -->
+        <div th:replace="~{/my/commons/bars::footer}"></div>
 
         <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
             <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>

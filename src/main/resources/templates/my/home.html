@@ -1521,13 +1521,13 @@ th:href 是⼀个修饰符属性，将表达式结果设置为标签 href 属性
         <p th:case="*">未知国籍</p>
     </div>
     <!--引用外部文件-->
-    <div th:insert="~{my/footer:: copy}">插入footer</div>
+    <div th:insert="~{/my/commons/bars :: footer}">插入footer</div>
 
     <!-- 注意：如果模板片段中应用了其中的样式，则谁引用了模板片段，谁就要导入此样式文件-->
     <!--<div th:replace="ace/login:: login">插入footer</div>-->
     <!--<div th:replace="my/index:: index">插入footer</div>-->
     <!--传值到引用的外部文件中-->
-    <div th:replace="~{my/footer::content(val1=66,val2=88)}">传值</div>
+    <!--<div th:replace="~{my/footer::content(val1=66,val2=88)}">传值</div>-->
 
     <h4>参数化片段签名</h4>
     为了使模板⽚段具有类似函数的功能，th:fragment 定义的⽚段可以指定⼀组参数：<br>

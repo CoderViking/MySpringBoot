@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Top Menu Style - Ace Admin</title>
+		<title>Two menu - Ace Admin</title>
 
-		<meta name="description" content="top menu &amp; navigation" />
+		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<!-- bootstrap & fontawesome -->
@@ -44,30 +44,30 @@
 	</head>
 
 	<body class="no-skin">
-		<div id="navbar" class="navbar navbar-default    navbar-collapse       h-navbar ace-save-state">
+		<div id="navbar" class="navbar navbar-default    navbar-collapse       ace-save-state">
 			<div class="navbar-container ace-save-state" id="navbar-container">
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+					<span class="sr-only">Toggle sidebar</span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+				</button>
+
 				<div class="navbar-header pull-left">
-					<a href="/my/myIndex.html" class="navbar-brand">
+					<a href="/my/myIndex" class="navbar-brand">
 						<small>
 							<i class="fa fa-leaf"></i>
 							Ace Admin
 						</small>
 					</a>
 
-					<button class="pull-right navbar-toggle navbar-toggle-img collapsed" type="button" data-toggle="collapse" data-target=".navbar-buttons,.navbar-menu">
+					<button class="pull-right navbar-toggle navbar-toggle-img collapsed" type="button" data-toggle="collapse" data-target=".navbar-buttons">
 						<span class="sr-only">Toggle user menu</span>
 
-						<img src="/images/avatars/yan.jpg" alt="Viking's Photo" />
-					</button>
-
-					<button class="pull-right navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#sidebar">
-						<span class="sr-only">Toggle sidebar</span>
-
-						<span class="icon-bar"></span>
-
-						<span class="icon-bar"></span>
-
-						<span class="icon-bar"></span>
+						<img src="/images/avatars/yan.jpg" alt="Jason's Photo" />
 					</button>
 				</div>
 
@@ -268,12 +268,12 @@
 							</div><!-- /.dropdown-menu -->
 						</li>
 
-						<li class="light-blue dropdown-modal user-min">
+						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="/images/avatars/yan.jpg" alt="Viking's Photo" />
+								<img class="nav-user-photo" src="/images/avatars/yan.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Welcome,</small>
-									Viking
+									Jason
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -288,7 +288,7 @@
 								</li>
 
 								<li>
-									<a href="profile.html">
+									<a href="/my/profile">
 										<i class="ace-icon fa fa-user"></i>
 										Profile
 									</a>
@@ -306,59 +306,6 @@
 						</li>
 					</ul>
 				</div>
-
-				<nav role="navigation" class="navbar-menu pull-left collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li>
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								Overview
-	  		&nbsp;
-								<i class="ace-icon fa fa-angle-down bigger-110"></i>
-							</a>
-
-							<ul class="dropdown-menu dropdown-light-blue dropdown-caret">
-								<li>
-									<a href="#">
-										<i class="ace-icon fa fa-eye bigger-110 blue"></i>
-										Monthly Visitors
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<i class="ace-icon fa fa-user bigger-110 blue"></i>
-										Active Users
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<i class="ace-icon fa fa-cog bigger-110 blue"></i>
-										Settings
-									</a>
-								</li>
-							</ul>
-						</li>
-
-						<li>
-							<a href="#">
-								<i class="ace-icon fa fa-envelope"></i>
-								Messages
-								<span class="badge badge-warning">5</span>
-							</a>
-						</li>
-					</ul>
-
-					<form class="navbar-form navbar-left form-search" role="search">
-						<div class="form-group">
-							<input type="text" placeholder="search" />
-						</div>
-
-						<button type="button" class="btn btn-mini btn-info2">
-							<i class="ace-icon fa fa-search icon-only bigger-110"></i>
-						</button>
-					</form>
-				</nav>
 			</div><!-- /.navbar-container -->
 		</div>
 
@@ -367,7 +314,7 @@
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
 
-			<div id="sidebar" class="sidebar      h-sidebar                navbar-collapse collapse          ace-save-state">
+			<div id="sidebar" class="sidebar                  responsive                    ace-save-state">
 				<script type="text/javascript">
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
@@ -403,8 +350,8 @@
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li class="hover">
-						<a href="myIndex.html">
+					<li class="">
+						<a href="/my/myIndex">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -412,7 +359,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="active open hover">
+					<li class="active open">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-desktop"></i>
 							<span class="menu-text">
@@ -425,7 +372,7 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="active open hover">
+							<li class="active open">
 								<a href="#" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 
@@ -436,8 +383,8 @@
 								<b class="arrow"></b>
 
 								<ul class="submenu">
-									<li class="active hover">
-										<a href="top-menu.html">
+									<li class="">
+										<a href="/my/top-menu">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Top Menu
 										</a>
@@ -445,8 +392,8 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="hover">
-										<a href="two-menu-1.html">
+									<li class="active">
+										<a href="/my/two-menu-1">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Two Menus 1
 										</a>
@@ -454,8 +401,8 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="hover">
-										<a href="two-menu-2.html">
+									<li class="">
+										<a href="/my/two-menu-2">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Two Menus 2
 										</a>
@@ -463,7 +410,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="hover">
+									<li class="">
 										<a href="mobile-menu-1.html">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Default Mobile Menu
@@ -472,7 +419,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="hover">
+									<li class="">
 										<a href="mobile-menu-2.html">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Mobile Menu 2
@@ -481,7 +428,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="hover">
+									<li class="">
 										<a href="mobile-menu-3.html">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Mobile Menu 3
@@ -492,7 +439,7 @@
 								</ul>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="typography.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Typography
@@ -501,7 +448,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="elements.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Elements
@@ -510,7 +457,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="buttons.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Buttons &amp; Icons
@@ -519,7 +466,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="content-slider.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Content Sliders
@@ -528,7 +475,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="treeview.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Treeview
@@ -537,7 +484,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="jquery-ui.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									jQuery UI
@@ -546,7 +493,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="nestable-list.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Nestable Lists
@@ -555,7 +502,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="#" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 
@@ -566,7 +513,7 @@
 								<b class="arrow"></b>
 
 								<ul class="submenu">
-									<li class="hover">
+									<li class="">
 										<a href="#">
 											<i class="menu-icon fa fa-leaf green"></i>
 											Item #1
@@ -575,7 +522,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="hover">
+									<li class="">
 										<a href="#" class="dropdown-toggle">
 											<i class="menu-icon fa fa-pencil orange"></i>
 
@@ -586,7 +533,7 @@
 										<b class="arrow"></b>
 
 										<ul class="submenu">
-											<li class="hover">
+											<li class="">
 												<a href="#">
 													<i class="menu-icon fa fa-plus purple"></i>
 													Add Product
@@ -595,7 +542,7 @@
 												<b class="arrow"></b>
 											</li>
 
-											<li class="hover">
+											<li class="">
 												<a href="#">
 													<i class="menu-icon fa fa-eye pink"></i>
 													View Products
@@ -610,7 +557,7 @@
 						</ul>
 					</li>
 
-					<li class="hover">
+					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-list"></i>
 							<span class="menu-text"> Tables </span>
@@ -621,8 +568,8 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="hover">
-								<a href="tables.html">
+							<li class="">
+								<a href="/my/tables">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Simple &amp; Dynamic
 								</a>
@@ -630,8 +577,8 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
-								<a href="jqgrid.html">
+							<li class="">
+								<a href="/my/jqgrid">
 									<i class="menu-icon fa fa-caret-right"></i>
 									jqGrid plugin
 								</a>
@@ -641,7 +588,7 @@
 						</ul>
 					</li>
 
-					<li class="hover">
+					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-pencil-square-o"></i>
 							<span class="menu-text"> Forms </span>
@@ -652,7 +599,7 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="hover">
+							<li class="">
 								<a href="form-elements.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Form Elements
@@ -661,7 +608,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="form-elements-2.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Form Elements 2
@@ -670,7 +617,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="form-wizard.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Wizard &amp; Validation
@@ -679,7 +626,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="wysiwyg.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Wysiwyg &amp; Markdown
@@ -688,7 +635,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="dropzone.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Dropzone File Upload
@@ -699,7 +646,7 @@
 						</ul>
 					</li>
 
-					<li class="hover">
+					<li class="">
 						<a href="widgets.html">
 							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> Widgets </span>
@@ -708,7 +655,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="hover">
+					<li class="">
 						<a href="calendar.html">
 							<i class="menu-icon fa fa-calendar"></i>
 
@@ -724,7 +671,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="hover">
+					<li class="">
 						<a href="gallery.html">
 							<i class="menu-icon fa fa-picture-o"></i>
 							<span class="menu-text"> Gallery </span>
@@ -733,7 +680,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="hover">
+					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-tag"></i>
 							<span class="menu-text"> More Pages </span>
@@ -744,8 +691,8 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="hover">
-								<a href="profile.html">
+							<li class="">
+								<a href="/my/profile">
 									<i class="menu-icon fa fa-caret-right"></i>
 									User Profile
 								</a>
@@ -753,7 +700,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="inbox.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Inbox
@@ -762,7 +709,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="pricing.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Pricing Tables
@@ -771,7 +718,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="invoice.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Invoice
@@ -780,7 +727,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="timeline.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Timeline
@@ -789,7 +736,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="search.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Search Results
@@ -798,7 +745,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="email.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Email Templates
@@ -807,8 +754,8 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
-								<a href="login.html">
+							<li class="">
+								<a href="/my/login">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Login &amp; Register
 								</a>
@@ -818,7 +765,7 @@
 						</ul>
 					</li>
 
-					<li class="hover">
+					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-file-o"></i>
 
@@ -834,7 +781,7 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="hover">
+							<li class="">
 								<a href="faq.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									FAQ
@@ -843,7 +790,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="error-404.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Error 404
@@ -852,7 +799,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
+							<li class="">
 								<a href="error-500.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Error 500
@@ -861,8 +808,8 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
-								<a href="grid.html">
+							<li class="">
+								<a href="/my/grid">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Grid
 								</a>
@@ -870,8 +817,8 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
-								<a href="blank.html">
+							<li class="">
+								<a href="/my/blank">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Blank Page
 								</a>
@@ -881,6 +828,10 @@
 						</ul>
 					</li>
 				</ul><!-- /.nav-list -->
+
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
 			</div>
 
 			<div class="main-content">
@@ -891,89 +842,216 @@
 						<!-- 引入主页面右侧伸缩悬窗结束 -->
 
 						<div class="page-header">
-							<h1>
-								Top Menu Style
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									top menu &amp; navigation
-								</small>
-							</h1>
+							<h1>Two menu </h1>
 						</div><!-- /.page-header -->
 
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<div class="alert alert-info visible-sm visible-xs">
-									<button type="button" class="close" data-dismiss="alert">
-										<i class="ace-icon fa fa-times"></i>
-									</button>
-									Please note that
-									<span class="blue bolder">top menu style</span>
-									is visible only in devices larger than
-									<span class="blue bolder">991px</span>
-									which you can change using CSS builder tool.
-								</div>
+								<div class="invisible">
+									<button data-target="#sidebar2" data-toggle="collapse" type="button" class="pull-left navbar-toggle collapsed">
+										<span class="sr-only">Toggle sidebar</span>
 
-								<div class="well well-sm visible-sm visible-xs">
-									Top menu can become any of the 3 mobile view menu styles:
-									<em>default</em>
-,
-									<em>collapsible</em>
-									or
-									<em>minimized</em>.
+										<i class="ace-icon fa fa-dashboard white bigger-125"></i>
+									</button>
+
+									<div id="sidebar2" class="sidebar h-sidebar navbar-collapse collapse ace-save-state">
+										<ul class="nav nav-list">
+											<li class="hover">
+												<a href="#">
+													<i class="menu-icon fa fa-tachometer"></i>
+													<span class="menu-text"> Dashboard </span>
+												</a>
+
+												<b class="arrow"></b>
+											</li>
+
+											<li class="hover">
+												<a href="#">
+													<i class="menu-icon fa fa-list-alt"></i>
+													<span class="menu-text">Widgets</span>
+												</a>
+
+												<b class="arrow"></b>
+											</li>
+
+											<li class="hover">
+												<a href="#">
+													<i class="menu-icon fa fa-calendar"></i>
+
+													<span class="menu-text">
+														Calendar
+														<span title="" class="badge badge-transparent tooltip-error" data-original-title="2 Important Events">
+															<i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+														</span>
+													</span>
+												</a>
+
+												<b class="arrow"></b>
+											</li>
+
+											<li class="hover">
+												<a href="#">
+													<i class="menu-icon fa fa-picture-o"></i>
+													<span class="menu-text"> Gallery </span>
+												</a>
+
+												<b class="arrow"></b>
+											</li>
+
+											<li class="hover">
+												<a class="dropdown-toggle" href="#">
+													<i class="menu-icon fa fa-tag"></i>
+													<span class="menu-text"> More Pages </span>
+
+													<b class="arrow fa fa-angle-down"></b>
+												</a>
+
+												<b class="arrow"></b>
+
+												<ul class="submenu">
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															User Profile
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															Inbox
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															Pricing Tables
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															Invoice
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															Timeline
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															Email Templates
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															Login &amp; Register
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+												</ul>
+											</li>
+
+											<li class="hover">
+												<a class="dropdown-toggle" href="#">
+													<i class="menu-icon fa fa-file-o"></i>
+
+													<span class="menu-text">
+														Other Pages
+														<span class="badge badge-primary">5</span>
+													</span>
+
+													<b class="arrow fa fa-angle-down"></b>
+												</a>
+
+												<b class="arrow"></b>
+
+												<ul class="submenu">
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															FAQ
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															Error 404
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															Error 500
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															Grid
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+
+													<li class="hover">
+														<a href="#">
+															<i class="menu-icon fa fa-caret-right"></i>
+															Blank Page
+														</a>
+
+														<b class="arrow"></b>
+													</li>
+												</ul>
+											</li>
+										</ul><!-- /.nav-list -->
+									</div><!-- .sidebar -->
 								</div>
 
 								<div class="hidden-sm hidden-xs">
-									<button type="button" class="sidebar-collapse btn btn-white btn-primary" data-target="#sidebar">
-										<i class="ace-icon fa fa-angle-double-up" data-icon1="ace-icon fa fa-angle-double-up" data-icon2="ace-icon fa fa-angle-double-down"></i>
+									<button type="button" class="sidebar-collapse btn btn-white btn-primary" data-target="#sidebar2">
+										<i id="sidebar2-toggle-icon" class="ace-icon fa fa-angle-double-up ace-save-state" data-icon1="ace-icon fa fa-angle-double-up" data-icon2="ace-icon fa fa-angle-double-down"></i>
 										Collapse/Expand Menu
 									</button>
 								</div>
 
-								<div class="center">
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-								</div>
-
-								<!-- PAGE CONTENT ENDS -->
+								<div class="hidden-md hidden-lg">
+									<div class="well well-sm">
+										You can place multiple toggle buttons for multiple menus anywhere inside navbar!
+									</div>
+								</div><!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
@@ -1012,59 +1090,24 @@
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {
-			 var $sidebar = $('.sidebar').eq(0);
-			 if( !$sidebar.hasClass('h-sidebar') ) return;
-			
-			 $(document).on('settings.ace.top_menu' , function(ev, event_name, fixed) {
-				if( event_name !== 'sidebar_fixed' ) return;
-			
-				var sidebar = $sidebar.get(0);
-				var $window = $(window);
-			
-				//return if sidebar is not fixed or in mobile view mode
-				var sidebar_vars = $sidebar.ace_sidebar('vars');
-				if( !fixed || ( sidebar_vars['mobile_view'] || sidebar_vars['collapsible'] ) ) {
-					$sidebar.removeClass('lower-highlight');
-					//restore original, default marginTop
-					sidebar.style.marginTop = '';
-			
-					$window.off('scroll.ace.top_menu')
-					return;
-				}
-			
-			
-				 var done = false;
-				 $window.on('scroll.ace.top_menu', function(e) {
-			
-					var scroll = $window.scrollTop();
-					scroll = parseInt(scroll / 4);//move the menu up 1px for every 4px of document scrolling
-					if (scroll > 17) scroll = 17;
-			
-			
-					if (scroll > 16) {			
-						if(!done) {
-							$sidebar.addClass('lower-highlight');
-							done = true;
-						}
-					}
-					else {
-						if(done) {
-							$sidebar.removeClass('lower-highlight');
-							done = false;
-						}
-					}
-			
-					sidebar.style['marginTop'] = (17-scroll)+'px';
-				 }).triggerHandler('scroll.ace.top_menu');
-			
-			 }).triggerHandler('settings.ace.top_menu', ['sidebar_fixed' , $sidebar.hasClass('sidebar-fixed')]);
-			
-			 $(window).on('resize.ace.top_menu', function() {
-				$(document).triggerHandler('settings.ace.top_menu', ['sidebar_fixed' , $sidebar.hasClass('sidebar-fixed')]);
-			 });
-			
-			
-			});
+			   $('#sidebar2').insertBefore('.page-content');
+			   
+			   $('.navbar-toggle[data-target="#sidebar2"]').insertAfter('#menu-toggler');
+			   
+			   
+			   $(document).on('settings.ace.two_menu', function(e, event_name, event_val) {
+				 if(event_name == 'sidebar_fixed') {
+					 if( $('#sidebar').hasClass('sidebar-fixed') ) {
+						$('#sidebar2').addClass('sidebar-fixed');
+						$('#navbar').addClass('h-navbar');
+					 }
+					 else {
+						$('#sidebar2').removeClass('sidebar-fixed')
+						$('#navbar').removeClass('h-navbar');
+					 }
+				 }
+			   }).triggerHandler('settings.ace.two_menu', ['sidebar_fixed' ,$('#sidebar').hasClass('sidebar-fixed')]);
+			})
 		</script>
 	</body>
 </html>

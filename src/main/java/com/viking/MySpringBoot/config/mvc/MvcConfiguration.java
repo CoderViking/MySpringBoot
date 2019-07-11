@@ -19,10 +19,12 @@ public class MvcConfiguration {
     @Bean
     public WebMvcConfigurer crossConfigurer(){
         return new WebMvcConfigurer() {
+            // 跨域配置
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**");
             }
+            // 静态资源映射
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
                 registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
@@ -35,7 +37,7 @@ public class MvcConfiguration {
                     @Override
                     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
                         Object user = request.getSession().getAttribute("user");
-                        if (null == user && (request.getServletPath().contains("html") || !request.getServletPath().contains("."))){
+                        if (null == user && (request.getServletPath().endsWith(".html") || !request.getServletPath().contains("."))){
                             request.setAttribute("msg","登录后获取访问权限~");
                             request.getRequestDispatcher("/my/login").forward(request,response);
                             return false;
@@ -47,7 +49,7 @@ public class MvcConfiguration {
                     @Override
                     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
                     }
-                }).addPathPatterns("/**").excludePathPatterns("/","/my/login","/my/login.html","/user/login","/test/login.html");
+                }).addPathPatterns("/**").excludePathPatterns("/","/login","/error","/my/login","/my/login.html","/user/login","/test/login.html");
             }
         };
     }

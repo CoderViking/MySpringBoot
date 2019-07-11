@@ -28,7 +28,7 @@ public class UserController {
         log.info("登录请求:account="+account+"\tpassword="+password);
         if (account.length() >= 3 && password.length() >= 6){
             ModelAndView model = new ModelAndView();
-            model.addObject("username","超级管理员");
+            model.addObject("username","Admin".equals(account)?"超级管理员":"用户"+account);
             model.addObject("account",account);
             model.addObject("uid","5c2f9805-5392-4e13-8a94-ce3f9ff7f620");
             session.setAttribute("user",model.getModel());
