@@ -1904,31 +1904,31 @@
         <script type="text/javascript">
             jQuery(function($) {
                 //页面进入加载项
-                $(function(){
-                    var data;
-                    var list;
-                    $.ajax({
-                        type: "GET",
-                        url:"/book/list",
-                        data:{
-//                        account:[[${account}]],
-//                        uid:[[${uid}]]
-                        },
-                        async:true,
-                        dataType:"json",
-                        success:function(res){
-                            data = res;
-                            list = data.list;
-                            console.log(list);
-                            $('#dynamic-table').dataTable().fnClearTable(); //清空表格
-                            $('#dynamic-table').dataTable().fnAddData(loadData(data),true); //刷下表格
-//                            $("#modal-container-648308").modal("hide");
-                        },
-                        error:function(err){
-                            console.log("error:"+err);
-//                            layer.msg("数据加载错误", {icon: 5});
-                        }});
-                });
+//                 $(function(){
+//                     var data;
+//                     var list;
+//                     $.ajax({
+//                         type: "GET",
+//                         url:"/book/list",
+//                         data:{
+// //                        account:[[${account}]],
+// //                        uid:[[${uid}]]
+//                         },
+//                         async:true,
+//                         dataType:"json",
+//                         success:function(res){
+//                             data = res;
+//                             list = data.list;
+//                             console.log(list);
+//                             $('#dynamic-table').dataTable().fnClearTable(); //清空表格
+//                             $('#dynamic-table').dataTable().fnAddData(loadData(data),true); //刷下表格
+// //                            $("#modal-container-648308").modal("hide");
+//                         },
+//                         error:function(err){
+//                             console.log("error:"+err);
+// //                            layer.msg("数据加载错误", {icon: 5});
+//                         }});
+//                 });
 
                 //initiate dataTables plugin
                 var myTable =
