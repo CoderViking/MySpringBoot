@@ -2,6 +2,7 @@ package com.viking.MySpringBoot.controller;
 
 import com.viking.MySpringBoot.exception.SimpleException;
 import com.viking.MySpringBoot.response.ResponseModel;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
- * Created by yanshuai on 2019/7/10
+ * Created by Viking on 2019/7/10
  */
 @Controller
 @RequestMapping("user")
@@ -34,6 +35,25 @@ public class UserController {
             session.setAttribute("user",model.getModel());
             return ResponseModel.setModel("success");
         }return ResponseModel.setErrModel("账号或密码错误");
+    }
+    @RequestMapping("logout")
+    @ResponseBody
+    public Object logout(String account, String uid, HttpSession session){
+        log.info("退出登录:account="+account+"\tuid="+uid);
+        if (session.getAttribute("user")!=null){
+            session.removeAttribute("user");
+            return ResponseModel.setModel("success");
+        }else return ResponseModel.setErrModel("操作失败");
+    }
+    @RequestMapping("register")
+    @ResponseBody
+    public Object register(String name, String password, String email){
+        if (StringUtils.isBlank(name)||StringUtils.isBlank(password)||StringUtils.isBlank(email)){
+            return ResponseModel.setErrModel("请完善资料后再提交");
+        }else {
+            log.info("注册用户:name="+name+"\tpassword="+password+"\temail="+email);
+            return ResponseModel.setModel("success");
+        }
     }
     @RequestMapping("home")
     @SuppressWarnings("unchecked")

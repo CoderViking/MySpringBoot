@@ -39,7 +39,10 @@ public class MvcConfiguration {
                         Object user = request.getSession().getAttribute("user");
                         if (null == user && (request.getServletPath().endsWith(".html") || !request.getServletPath().contains("."))){
                             request.setAttribute("msg","登录后获取访问权限~");
-                            request.getRequestDispatcher("/my/login").forward(request,response);
+                            // 请求转发方式跳转到登录页(url不变)
+//                            request.getRequestDispatcher("/my/login").forward(request,response);
+                            // 重定向方式跳转到登录页(url变为重定向后的地址)
+                            response.sendRedirect("/my/login");
                             return false;
                         }else { return true;}
                     }
@@ -49,7 +52,7 @@ public class MvcConfiguration {
                     @Override
                     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
                     }
-                }).addPathPatterns("/**").excludePathPatterns("/","/login","/error","/my/login","/my/login.html","/user/login","/test/login.html");
+                }).addPathPatterns("/**").excludePathPatterns("/","/login","/error","/my/login","/my/login.html","/user/login","/user/register","/test/login.html");
             }
         };
     }

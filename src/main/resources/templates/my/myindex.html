@@ -1165,6 +1165,8 @@
     <!--[if IE]>
     <script src="/js/jquery-1.11.3.min.js"></script>
     <![endif]-->
+    <!--layer 注:必须在jquery包的后面导入-->
+    <script src="/layer/layer.js"></script>
     <script type="text/javascript">//加载下次提示跳动js代码
         if('ontouchstart' in document.documentElement) document.write("<script src='/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
     </script>
@@ -1184,8 +1186,41 @@
     <script src="/js/ace-elements.min.js"></script>
     <script src="/js/ace.min.js"></script>
     <!-- inline scripts related to this page -->
-    <script type="text/javascript">
+    <script type="text/javascript" th:inline="javascript">
         jQuery(function($) {
+            // 注销登录
+            $('#logout').on('click',function () {
+                // 询问框
+                layer.confirm('您确定要退出当前登录？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    $.ajax({
+                        type: "post",
+                        url:"/user/logout",
+                        data:{
+                            account:[[${account}]],
+                            uid:[[${uid}]]
+                        },
+                        async:true,
+                        dataType:"json",
+                        success:function(res){
+                            console.log("success:"+res.data);
+                            if ("success"===res.data) location.href = "/my/login";
+                            else layer.msg(res.msg, {icon: 5});
+                            return false;
+                        },
+                        error:function(err){
+                            console.log("error:"+err);
+                            if ("success"===err.data) location.href = "/my/login";
+                            else layer.msg(err.msg, {icon: 5});
+                        }});
+                }, function(){
+//                    layer.msg('也可以这样', {
+//                        time: 20000, //20s后自动关闭
+//                        btn: ['明白了', '知道了']
+//                    });
+                });
+            });
             $('#query').on('click',function () {
                 $('#pageContent').attr
             });
