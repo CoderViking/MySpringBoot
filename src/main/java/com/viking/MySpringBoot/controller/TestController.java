@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by yanshuai on 2019/5/22
+ * Created by Viking on 2019/5/22
  * thymeleaf相关测试接口
  */
 @RestController
