@@ -72,6 +72,7 @@ public class TestController {
     @RequestMapping("exception")
     @ResponseBody
     public Object testException(){
-        throw new MyException("哈哈哈,抛异常了");
+//        throw new MyException("哈哈哈,抛异常了");
+        throw new MyException();
     }
 }
