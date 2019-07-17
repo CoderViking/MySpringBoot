@@ -75,4 +75,9 @@ public class TestController {
 //        throw new MyException("哈哈哈,抛异常了");
         throw new MyException();
     }
+    @RequestMapping("exception1")
+    @ResponseBody
+    public Object testException1(){
+        throw new MyException(401,"哈哈哈,抛异常了");
+    }
 }

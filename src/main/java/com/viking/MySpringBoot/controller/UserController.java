@@ -1,5 +1,6 @@
 package com.viking.MySpringBoot.controller;
 
+import com.viking.MySpringBoot.exception.MyException;
 import com.viking.MySpringBoot.exception.SimpleException;
 import com.viking.MySpringBoot.response.ResponseModel;
 import org.apache.commons.lang3.StringUtils;
@@ -34,7 +35,8 @@ public class UserController {
             model.addObject("uid","5c2f9805-5392-4e13-8a94-ce3f9ff7f620");
             session.setAttribute("user",model.getModel());
             return ResponseModel.setModel("success");
-        }return ResponseModel.setErrModel("账号或密码错误");
+        }/*return ResponseModel.setErrModel("账号或密码错误");*/
+        throw new MyException("帐号或密码错误");
     }
     @RequestMapping("logout")
     @ResponseBody

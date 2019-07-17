@@ -9,7 +9,7 @@ public class ResponseCode {
     //成功
     public final static String SUCCESS = "200";
     //请求出错,业务出错
-    public final static String BUSINESS_ERROR = "417";
+    public final static String BUSINESS_ERROR = "412";
     //程序出错
     public final static String ERROR = "500";
     //失败

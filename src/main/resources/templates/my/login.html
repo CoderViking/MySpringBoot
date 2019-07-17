@@ -348,7 +348,8 @@
                     return false;
                 },
                 error:function(err){
-                    console.log("error:"+err);
+                    console.log("error:"+err.status);
+                    console.log(err);
                     if ("success"===err.data) location.href = "/my/myIndex";
                     else layer.msg(err.msg, {icon: 5});
                 }});

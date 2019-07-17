@@ -17,7 +17,7 @@ import java.util.Map;
 public class MyExceptionHandler {
     private static Logger log = LoggerFactory.getLogger(MyExceptionHandler.class);
     private static final String DEFAULT_ERROR_MSG = "操作失败,请稍后再试!";
-    private static final Integer DEFAULT_ERROR_CODE = 471;
+    private static final Integer DEFAULT_ERROR_CODE = 412;
     private static final String ERROR_STATUS_KEY = "javax.servlet.error.status_code";
 
     /**
@@ -43,7 +43,7 @@ public class MyExceptionHandler {
     @ExceptionHandler(MyException.class)
     public String myException(MyException e, HttpServletRequest request){
         log.error("自定义异常 [ " + (null == e.getCode()? DEFAULT_ERROR_CODE : e.getCode()) + " ] -------------------- " + (null == e.getMsg()? DEFAULT_ERROR_MSG : e.getMsg()));
-        request.setAttribute(ERROR_STATUS_KEY,404);
+        request.setAttribute(ERROR_STATUS_KEY,null == e.getCode()? DEFAULT_ERROR_CODE : e.getCode());
         Map<String,Object> map = new HashMap<>();
         map.put("msg", null == e.getMsg()? DEFAULT_ERROR_MSG : e.getMsg());
         map.put("code", null == e.getCode()? DEFAULT_ERROR_CODE : e.getCode());
