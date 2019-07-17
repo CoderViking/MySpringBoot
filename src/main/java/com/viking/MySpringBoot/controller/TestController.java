@@ -1,9 +1,11 @@
 package com.viking.MySpringBoot.controller;
 
+import com.viking.MySpringBoot.exception.MyException;
 import com.viking.MySpringBoot.exception.SimpleException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -66,5 +68,11 @@ public class TestController {
         if (null == model) throw new SimpleException("请先登录后再操作");
         model.setViewName("/my/myIndex");
         return model;
+    }
+    @RequestMapping("exception")
+    @ResponseBody
+    public Object testException(){
+//        throw new MyException("哈哈哈,抛异常了");
+        throw new MyException();
     }
 }
