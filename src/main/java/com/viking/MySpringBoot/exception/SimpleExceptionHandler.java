@@ -90,7 +90,7 @@ public class SimpleExceptionHandler {
         return over(ResponseCode.BUSINESS_ERROR,ERRORMSG,null);
     }
 
-    private Object over(String status,String msg,Object data){
+    private Object over(Integer status,String msg,Object data){
         if(StringUtils.isNotBlank(request.getParameter("callback"))){
             JSONPObject jsonpObject=new JSONPObject(request.getParameter("callback"));
             jsonpObject.addParameter(new ResponseModel(status, msg, data));

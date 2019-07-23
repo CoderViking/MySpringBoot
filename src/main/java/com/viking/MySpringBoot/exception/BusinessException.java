@@ -9,14 +9,14 @@ import com.viking.MySpringBoot.response.ResponseCode;
  */
 public class BusinessException extends RuntimeException   {
     private static final long serialVersionUID = -4321842465818992079L;
-    private String errCode;
+    private Integer errCode;
     private String errMsg;
 
-    public String getErrCode() {
+    public Integer getErrCode() {
         return errCode;
     }
 
-    public void setErrCode(String errCode) {
+    public void setErrCode(Integer errCode) {
         this.errCode = errCode;
     }
 
@@ -28,7 +28,7 @@ public class BusinessException extends RuntimeException   {
         this.errMsg = errMsg;
     }
 
-    public BusinessException(String errCode, String errMsg) {
+    public BusinessException(Integer errCode, String errMsg) {
         this.errCode = errCode;
         this.errMsg = errMsg;
     }

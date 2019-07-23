@@ -12,14 +12,14 @@ import java.io.Serializable;
  */
 public class ResponseModel<T> implements Serializable {
 
-    private String status;
+    private Integer status;
     private String msg;
     private T data;
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -39,14 +39,14 @@ public class ResponseModel<T> implements Serializable {
     }
 
     public ResponseModel(){}
-    public ResponseModel(String status){
+    public ResponseModel(Integer status){
         this.status=status;
     }
-    public ResponseModel(String status, String msg){
+    public ResponseModel(Integer status, String msg){
         this.status=status;
         this.msg=msg;
     }
-    public ResponseModel(String status, String msg, T data){
+    public ResponseModel(Integer status, String msg, T data){
         this.status=status;
         this.msg=msg;
         this.data=data;
@@ -55,10 +55,10 @@ public class ResponseModel<T> implements Serializable {
     public static <T> ResponseModel<T> setModel(T data){
         return new ResponseModel<T>(ResponseCode.SUCCESS,"成功",data);
     }
-    public static <T> ResponseModel<T> setModel(String code,T data){
+    public static <T> ResponseModel<T> setModel(Integer code,T data){
         return new ResponseModel<T>(code,"异常",data);
     }
-    public static <T> ResponseModel<T> setErrModel(String code,String msg){
+    public static <T> ResponseModel<T> setErrModel(Integer code,String msg){
         return new ResponseModel<>(code,msg,null);
     }
     public static <T> ResponseModel<T> setErrModel(String msg){
