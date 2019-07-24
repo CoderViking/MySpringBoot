@@ -90,6 +90,7 @@
 
                                         <!-- div.dataTables_borderWrap -->
                                         <div>
+                                            <!-- 使用了dataTable插件来实现数据表格展示 -->
                                             <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                                                 <thead>
                                                 <tr>
@@ -1904,31 +1905,66 @@
         <script type="text/javascript">
             jQuery(function($) {
                 //页面进入加载项
-//                 $(function(){
-//                     var data;
-//                     var list;
-//                     $.ajax({
-//                         type: "GET",
-//                         url:"/book/list",
-//                         data:{
-// //                        account:[[${account}]],
-// //                        uid:[[${uid}]]
-//                         },
-//                         async:true,
-//                         dataType:"json",
-//                         success:function(res){
-//                             data = res;
-//                             list = data.list;
-//                             console.log(list);
+                 $(function(){
+                     var data;
+                     var list;
+                     $.ajax({
+                         type: "GET",
+                         url:"/book/list",
+                         data:{
+ //                        account:[[${account}]],
+ //                        uid:[[${uid}]]
+                         },
+                         async:true,
+                         dataType:"json",
+                         success:function(res){
+                             data = res;
+                             list = data.list;
+                             console.log(list);
 //                             $('#dynamic-table').dataTable().fnClearTable(); //清空表格
 //                             $('#dynamic-table').dataTable().fnAddData(loadData(data),true); //刷下表格
-// //                            $("#modal-container-648308").modal("hide");
-//                         },
-//                         error:function(err){
-//                             console.log("error:"+err);
-// //                            layer.msg("数据加载错误", {icon: 5});
-//                         }});
-//                 });
+ //                            $("#modal-container-648308").modal("hide");
+                             var tab = $('#dynamic-table').getElementsByTagName("tbody");
+                             for (var i = 0;i<list.length;i++){
+                                 var tr = document.createElement("tr");
+                                 var checkbox = document.createElement("td");
+                                 checkbox.setClass("center");
+                                 var bookName = document.createElement("td");
+                                 bookName.setAttribute("align","center");
+                                  var a = document.createElement("a");
+                                  a.setAttribute("href","#");
+                                 var bookPrice = document.createElement("td");
+                                 bookPrice.setAttribute("align","center");
+                                 var bookPages = document.createElement("td");
+                                 bookPages.setClass("hidden-480");
+                                 var bookPublishDate = document.createElement("td");
+                                 bookPublishDate.setAttribute("align","center");
+                                 var bookAuthor = document.createElement("td");
+                                 bookAuthor.setClass("hidden-480");
+                                 checkbox.innerHTML = "<label class=\"pos-rel\">\n" +
+                     "                                     <input type=\"checkbox\" class=\"ace\" />\n" +
+                     "                                     <span class=\"lbl\"></span>\n" +
+                 "                                     </label>";
+                                 bookName.innerHTML = list[i].book_name;
+                                 bookPrice.innerHTML = list[i].book_price;
+                                 bookPages.innerHTML = list[i].book_price;
+                                 bookPublishDate.innerHTML = list[i].publish_time;
+                                 bookAuthor.innerHTML = "<span class=\"label label-sm label-inverse arrowed-in\"> "+list[i].book_author+"</span>";
+                                 tr.appendChild(checkbox);
+                                 bookName.appendChild(a);
+                                 tr.appendChild(bookName);
+                                 tr.appendChild(bookPrice);
+                                 tr.appendChild(bookPages);
+                                 tr.appendChild(bookPublishDate);
+                                 tr.appendChild(bookAuthor);
+                                 tab.appendChild(tr);
+                             }
+                         },
+                         error:function(err){
+                             console.log("error:"+err);
+ //                            layer.msg("数据加载错误", {icon: 5});
+                         }});
+                 });
 
                 //initiate dataTables plugin
                 var myTable =
