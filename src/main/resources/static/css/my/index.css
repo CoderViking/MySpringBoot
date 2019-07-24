@@ -1,9 +1,0 @@
-/*bootstrap& fontawesome*/
-@import "../bootstrap.min.css";
-@import "../../font-awesome/4.5.0/css/font-awesome.min.css";
-/*text fonts*/
-@import "../fonts.googleapis.com.css";
-/*ace styles*/
-@import "../ace.min.css";
-@import "../ace-skins.min.css";
-@import "../ace-rtl.min.css";
