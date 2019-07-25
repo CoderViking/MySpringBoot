@@ -12,21 +12,18 @@ import java.util.Date;
  */
 //@Data
 //@Accessors(chain = true)
-@Document(indexName = "blog", type = "java")
+@Document(indexName = "blog", type = "java",shards = 1,replicas = 0)
 public class Blog {
-    private static final long serialVersionUID = 6320548148250372657L;
-
-
     @Id
-    @Field(type = FieldType.Keyword)
     private String id;
-
+//    @Field(type = FieldType.Keyword)
     private String title;
-
-    //@Field(type = FieldType.Date, format = DateFormat.basic_date)
+//    @Field(type = FieldType.Date, format = DateFormat.basic_date)
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
 //    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date time;
+//    @Field(type = FieldType.Text)
+    private String mainContent;
 
 
     public String getId() {
@@ -51,5 +48,23 @@ public class Blog {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public String getMainContent() {
+        return mainContent;
+    }
+
+    public void setMainContent(String mainContent) {
+        this.mainContent = mainContent;
+    }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", time=" + time +
+                ", mainContent='" + mainContent + '\'' +
+                '}';
     }
 }

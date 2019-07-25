@@ -42,8 +42,9 @@ public class MyExceptionHandler {
      * @param e 异常对象
      * @return 自定义异常信息
      */
+    @ResponseBody
     @ExceptionHandler(MyException.class)
-    public String myException(MyException e, HttpServletRequest request){
+    public Object myException(MyException e, HttpServletRequest request){
         if (e.getCode() == null) e.setCode(DEFAULT_ERROR_CODE);
         if (e.getMsg() == null) e.setMsg(DEFAULT_ERROR_MSG);
         log.error("自定义异常 [ " + e.getCode() + " ] -------------------- " + e.getMsg());
@@ -52,7 +53,7 @@ public class MyExceptionHandler {
         map.put("msg", e.getMsg());
         map.put("code", e.getCode());
         request.setAttribute("myErrorAttributes",map);
-        return "forward:/error";
-
+//        return "forward:/error";//转发请求springMvc的错误控制器处理
+        return map;
     }
 }
