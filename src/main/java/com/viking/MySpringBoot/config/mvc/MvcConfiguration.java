@@ -38,11 +38,11 @@ public class MvcConfiguration {
                     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
                         Object user = request.getSession().getAttribute("user");
                         if (null == user && (request.getServletPath().endsWith(".html") || !request.getServletPath().contains("."))){
-                            request.setAttribute("msg","登录后获取访问权限~");
+                            request.setAttribute("errMsg","登录后获取访问权限~");
                             // 请求转发方式跳转到登录页(url不变)
-//                            request.getRequestDispatcher("/my/login").forward(request,response);
+                            request.getRequestDispatcher("/my/login").forward(request,response);
                             // 重定向方式跳转到登录页(url变为重定向后的地址)
-                            response.sendRedirect("/my/login");
+//                            response.sendRedirect("/my/login");
                             return false;
                         }else { return true;}
                     }

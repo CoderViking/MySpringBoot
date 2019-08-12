@@ -27,32 +27,33 @@ public class MyExceptionHandler {
      * @param e 异常对象
      * @return 自定义异常信息
      */
-//    @ResponseBody
-//    @ExceptionHandler(MyException.class)
-//    public Object myException(MyException e){
-//        log.error("自定义异常 [ " + (null == e.getCode()? DEFAULT_ERROR_CODE : e.getCode()) + " ] -------------------- " + (null == e.getMsg()? DEFAULT_ERROR_MSG : e.getMsg()));
-//        Map<String,Object> map = new HashMap<>();
-//        map.put("code", null == e.getCode()? DEFAULT_ERROR_CODE : e.getCode());
-//        map.put("msg", null == e.getMsg()? DEFAULT_ERROR_MSG : e.getMsg());
-//        return map;
-//
-//    }
+    @ResponseBody
+    @ExceptionHandler(MyException.class)
+    public Object myException(MyException e,HttpServletRequest request){
+        log.error("自定义异常 [ " + (null == e.getCode()? DEFAULT_ERROR_CODE : e.getCode()) + " ] -------------------- " + (null == e.getMsg()? DEFAULT_ERROR_MSG : e.getMsg()));
+        Map<String,Object> map = new HashMap<>();
+        map.put("code", null == e.getCode()? DEFAULT_ERROR_CODE : e.getCode());
+        map.put("errMsg", null == e.getMsg()? DEFAULT_ERROR_MSG : e.getMsg());
+        request.getSession().setAttribute("errMsg",e.getMsg());
+        return map;
+
+    }
     /**
      * 浏览器和客户端自适应效果
      * @param e 异常对象
      * @return 自定义异常信息
      */
-    @ExceptionHandler(MyException.class)
-    public String myException(MyException e, HttpServletRequest request){
-        if (e.getCode() == null) e.setCode(DEFAULT_ERROR_CODE);
-        if (e.getMsg() == null) e.setMsg(DEFAULT_ERROR_MSG);
-        log.error("自定义异常 [ " + e.getCode() + " ] -------------------- " + e.getMsg());
-        request.setAttribute(ERROR_STATUS_KEY, e.getCode());
-        Map<String,Object> map = new HashMap<>();
-        map.put("msg", e.getMsg());
-        map.put("code", e.getCode());
-        request.setAttribute("myErrorAttributes",map);
-        return "forward:/error";
-
-    }
+//    @ExceptionHandler(MyException.class)
+//    public String myException(MyException e, HttpServletRequest request){
+//        if (e.getCode() == null) e.setCode(DEFAULT_ERROR_CODE);
+//        if (e.getMsg() == null) e.setMsg(DEFAULT_ERROR_MSG);
+//        log.error("自定义异常 [ " + e.getCode() + " ] -------------------- " + e.getMsg());
+//        request.setAttribute(ERROR_STATUS_KEY, e.getCode());
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("msg", e.getMsg());
+//        map.put("code", e.getCode());
+//        request.setAttribute("myErrorAttributes",map);
+//        return "forward:/error";
+//
+//    }
 }

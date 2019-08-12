@@ -9,9 +9,6 @@ if('ontouchstart' in document.documentElement) document.write("<script th:src='@
             $(target).addClass('visible');//show target
         });
     });
-
-
-
 //you don't need this, just used for changing background
 jQuery(function($) {
     $('#btn-login-dark').on('click', function(e) {
@@ -38,6 +35,14 @@ jQuery(function($) {
     $('#login').on('click',function () {
         var account = $('#account').val();
         var password = $('#password').val();
+        if (account===""){
+            layer.msg("账号不能为空",{icon:5});
+            return false;
+        }
+        if (password===""){
+            layer.msg("密码不能为空",{icon:5});
+            return false;
+        }
         $.ajax({
             type: "post",
             url:"/user/login",
@@ -50,14 +55,15 @@ jQuery(function($) {
             success:function(res){
                 console.log("success:"+res.data);
                 if ("success"===res.data) location.href = "/my/myIndex";
-                else layer.msg(res.msg, {icon: 5});
+                else layer.msg(res.errMsg, {icon: 5});
                 return false;
             },
             error:function(err){
                 console.log("error:"+err.status);
                 console.log(err);
                 if ("success"===err.data) location.href = "/my/myIndex";
-                else layer.msg(err.msg, {icon: 5});
+                else layer.msg(err.errMsg, {icon: 5});
+                return false;
             }});
         console.log("请求成功");
     });

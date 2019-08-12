@@ -40,7 +40,9 @@ public class TestController {
             map.put("page","my/home::index");
             request.getSession().setAttribute("user",map);
             return "OK";
-        }else throw new SimpleException("账号或密码有误");
+        }else {
+            throw new MyException("账号或密码有误");
+        }
     }
     @RequestMapping("index")
     @SuppressWarnings("unchecked")

@@ -290,5 +290,15 @@
 <script th:src="@{/layer/layer.js}"></script>
 <!-- 操作逻辑js -->
 <script th:src="@{/js/my/login.js}"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        // 在js代码中获取接口变量，只能写在html页面中
+        var errMsg = "[[${errMsg}]]";
+        console.log(errMsg);
+        if (errMsg.length>0){
+            layer.msg(errMsg, {icon: 5});
+        }
+    });
+</script>
 </body>
 </html>
