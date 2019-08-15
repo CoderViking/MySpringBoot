@@ -343,7 +343,88 @@
                     </a>
                     <b class="arrow"></b>
                 </li>
-
+                <li class="">
+                    <a href="">
+                        <i class="menu-icon glyphicon glyphicon-pencil"></i>
+                        <span class="menu-text"> 发布博客 </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="" th:class="${activeUriFirst=='UIAndElements' ? 'active open hover' : ''}">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-book"></i>
+                        <span class="menu-text">
+								博客管理
+							</span>
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <b class="arrow"></b>
+                    <!--列表项中嵌套列表-->
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                博客管理
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                分类管理
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                评论管理
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                标签管理
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+                <li class="" th:class="${activeUriFirst=='UIAndElements' ? 'active open hover' : ''}">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-cogs"></i>
+                        <span class="menu-text">
+								系统管理
+							</span>
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <b class="arrow"></b>
+                    <!--列表项中嵌套列表-->
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                系统配置
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                修改密码
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+                <li class="" th:class="${activeUriFirst=='index' ? 'active' : ''}">
+                    <a href="/my/myIndex.html">
+                        <i class="menu-icon fa fa-tachometer"></i>
+                        <span class="menu-text"> 数据指示板 </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
                 <li class="" th:class="${activeUriFirst=='UIAndElements' ? 'active open hover' : ''}">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-desktop"></i>
