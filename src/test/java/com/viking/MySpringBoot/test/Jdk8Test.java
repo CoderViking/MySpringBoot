@@ -6,7 +6,7 @@ import java.text.DateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.time.temporal.ChronoUnit;
+import java.time.temporal.*;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -46,7 +46,7 @@ public class Jdk8Test {
         System.out.println(format);
     }
     @Test
-    public void testLocalDate(){
+    public void testLocalDate() throws InterruptedException {
         LocalDate localDate = LocalDate.now();
         System.out.println("今天的日期是："+localDate);
         int year = localDate.getYear();
@@ -89,10 +89,67 @@ public class Jdk8Test {
         System.out.println("localTime:"+localTime);
         LocalTime plusHours = localTime.plusHours(3);
         System.out.println("plus3Hours:"+plusHours);
+        System.out.println("当前小时数："+localTime.getHour());
+        System.out.println("当前分钟数："+localTime.getMinute());
+        System.out.println("当前秒数："+localTime.getSecond());
         System.out.println("当前日期:"+localDate);
-        LocalDate plus = localDate.plus(1, ChronoUnit.WEEKS);
+        LocalDate plus = localDate.plus(-1, ChronoUnit.WEEKS);
+        LocalDate minus = localDate.minus(-1, ChronoUnit.WEEKS);
         System.out.println("一周后日期："+plus);
-
-
+        System.out.println("一周前日期："+minus);
+        String format = localDate.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        System.out.println("格式化日期："+format);
+        Clock clock = Clock.systemUTC();
+        System.out.println("当前时刻："+clock.instant()+8);
+        System.out.println("当前时钟："+clock.millis());
+        String dateText = "2019/08/15";
+        LocalDate parse = LocalDate.parse(dateText,DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+//        LocalDate parse = LocalDate.parse(dateText);
+        System.out.println("解析文本后日期为："+parse);
+        Duration duration = Duration.ofDays(60);
+        System.out.println("duration:"+duration.abs());
+        LocalTime specialTime = LocalTime.of(16, 55, 59);
+        System.out.println("specialTime:"+specialTime);
+        ValueRange range = specialTime.range(ChronoField.HOUR_OF_DAY);
+        System.out.println("小时的取值范围:"+range);
+        ValueRange monthRange = localDate.range(ChronoField.MONTH_OF_YEAR);
+        System.out.println("月份的取值："+monthRange);
+        ValueRange yearRange = localDate.range(ChronoField.YEAR);
+        System.out.println("年份的取值："+yearRange);
+        LocalTime truncatedHour = localTime.truncatedTo(ChronoUnit.HOURS);
+        System.out.println("truncatedHour:"+truncatedHour);
+        LocalTime truncatedMinutes = localTime.truncatedTo(ChronoUnit.MINUTES);
+        System.out.println("truncatedMinutes:"+truncatedMinutes);
+        LocalTime truncatedSeconds = localTime.truncatedTo(ChronoUnit.SECONDS);
+        System.out.println("truncatedSeconds:"+truncatedSeconds);
+        System.out.println("now:"+LocalTime.now());
+//        Thread.sleep(5000);
+        System.out.println("now:"+LocalTime.now());
+        System.out.println("truncatedSeconds:"+truncatedSeconds);
+        LocalDateTime localDateTime = localTime.atDate(localDate);
+        System.out.println("localDateTime:"+localDateTime);
+        LocalDateTime atTime = localDate.atTime(localTime);
+        System.out.println("atTime:"+atTime);
+        LocalDateTime localDateTime1 = LocalDateTime.now();
+        System.out.println(localDateTime1);
+        String now = localDateTime1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println(now);
+        LocalDateTime dateTime1 = LocalDateTime.of(2018, 5, 20, 13, 14, 0);
+        LocalDateTime dateTime2 = LocalDateTime.now();
+        Instant toInstant = dateTime2.toInstant(ZoneOffset.UTC);
+        long milli = toInstant.toEpochMilli();
+        System.out.println("milli:"+milli);
+        System.out.println("Date.getTime():"+new Date().getTime());
+        System.out.println("toInstant:"+toInstant);
+        System.out.println("dateTime1:"+dateTime1);
+        long until = dateTime1.until(dateTime2, ChronoUnit.DAYS);
+        System.out.println(dateTime2);
+        System.out.println("相差天数:"+until);
+        LocalDateTime time = LocalDateTime.ofEpochSecond(milli/1000, 0, ZoneOffset.UTC);
+        LocalDateTime time1 = LocalDateTime.ofInstant(toInstant, ZoneId.systemDefault());
+        System.out.println("time:"+time);
+        System.out.println("time1:"+time1);
+        LocalDateTime dateTime3 = dateTime2.with(ChronoField.HOUR_OF_DAY, 8).with(ChronoField.MINUTE_OF_HOUR,0).with(ChronoField.SECOND_OF_MINUTE,0).with(ChronoField.NANO_OF_SECOND,0);
+        System.out.println("dateTime3:"+dateTime3);
     }
 }
