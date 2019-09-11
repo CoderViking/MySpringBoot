@@ -1,14 +1,20 @@
 package com.viking.MySpringBoot.test;
 
 import org.junit.Test;
+import org.springframework.util.CollectionUtils;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.DateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.temporal.*;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Viking on 2019/5/30
@@ -151,5 +157,74 @@ public class Jdk8Test {
         System.out.println("time1:"+time1);
         LocalDateTime dateTime3 = dateTime2.with(ChronoField.HOUR_OF_DAY, 8).with(ChronoField.MINUTE_OF_HOUR,0).with(ChronoField.SECOND_OF_MINUTE,0).with(ChronoField.NANO_OF_SECOND,0);
         System.out.println("dateTime3:"+dateTime3);
+
+        Instant instant1 = Instant.now();
+        Instant instant2 = Instant.now(Clock.systemDefaultZone());
+        Instant instant3 = Instant.ofEpochMilli(1567737396610L);
+        Instant instant4 = Instant.ofEpochSecond(1567737390L);
+        Instant instant5 = Instant.ofEpochSecond(1567737390L,0L);
+        Instant instant6 = Instant.from(instant4);
+        Instant instant7 = Instant.parse("2019-01-01T16:20:00.000Z");
+        System.out.println(instant1);
+        System.out.println(instant2);
+        System.out.println(instant3);
+        System.out.println(instant4);
+        System.out.println(instant5);
+        System.out.println(instant6);
+        System.out.println(instant7);
+        System.out.println(instant1.toEpochMilli());
+        System.out.println(instant1.toString());
+    }
+    @Test
+    public void testThread(){
+//        Thread task = new Thread();
+//        task.start();
+        Integer a = Integer.MAX_VALUE;
+        Integer b = Integer.MIN_VALUE;
+        float c = Float.MAX_VALUE;
+        float d = Float.MIN_VALUE;
+//        BigInteger e = new BigInteger("3.1415926");
+        BigDecimal e = new BigDecimal("3.1415926");
+        BigDecimal f = new BigDecimal("3.14159263");
+        BigDecimal x = f.subtract(e);
+        BigDecimal y = f.add(e);
+        System.out.println("max:"+a);
+        System.out.println("min:"+new BigDecimal(b).toPlainString());
+        System.out.println("max:"+new BigDecimal(c).toPlainString());
+        System.out.println("min:"+new BigDecimal(d).toPlainString());
+        System.out.println("x="+x.toPlainString());
+        System.out.println("y="+y.toString());
+        System.out.println("z="+new BigDecimal("-2").toPlainString());
+        int sum = 1;
+        for (int i =1 ;i<=32;i++){
+            sum=sum*2;
+        }
+        System.out.println("2^64:"+sum);
+        float float_max = 1;
+        for (int i = 1;i<=127;i++){
+            float_max = float_max * 2;
+        }
+        float g = 340282356700000000000000000000000000000F;
+        //170141183460469231731687303715884105728
+        //340282366920938463463374607431768211456
+        //340282346638528859811704183484516925440
+        System.out.println("float_max="+new BigDecimal(g).toPlainString());
+
+        Integer[] myArray = { 1, 2, 3 };
+        List myList = Arrays.asList(myArray);
+        System.out.println(myList.size());//1
+        System.out.println(myList.get(0));//数组地址值
+//        System.out.println(myList.get(1));//报错：ArrayIndexOutOfBoundsException
+//        Integer [] array = (Integer[]) myList.get(0);
+        System.out.println(myList.get(2));//3
+        myArray[2] = 0;
+        System.out.println(myList.get(2));//0
+
+        List myList1 = Arrays.stream(myArray).collect(Collectors.toList());
+//基本类型也可以实现转换（依赖boxed的装箱操作）
+        int [] myArray2 = { 1, 2, 3 };
+        List myList2 = Arrays.stream(myArray2).boxed().collect(Collectors.toList());
+        Object[] objects = myList.toArray();
+        System.out.println(Arrays.toString(objects));
     }
 }
