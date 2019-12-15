@@ -19,6 +19,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -56,7 +57,7 @@ public class MyRestController {
 
     @RequestMapping("add")
     public Object addWeather(Weather param){
-        param.setDate(new Date());
+        param.setDate(LocalDateTime.now());
 //        weatherRepository.save(bean);
         return "OK";
     }
@@ -130,8 +131,12 @@ public class MyRestController {
     }
     @RequestMapping("ins")
     public Object insertMulti(Weather param){
-        param.setDate(new Date());
+        param.setDate(LocalDateTime.now());
         fruitsMapper.addWeather(param);
         return "OK";
+    }
+    @RequestMapping("sel")
+    public Object selectWeatherInfo(Integer id){
+        return fruitsMapper.selectWeatherInfo(id);
     }
 }

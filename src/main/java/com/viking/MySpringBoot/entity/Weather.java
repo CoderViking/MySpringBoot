@@ -1,6 +1,6 @@
 package com.viking.MySpringBoot.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Created by Viking on 2019/4/27
@@ -11,7 +11,7 @@ public class Weather {
     private String weather;
     private float temperature;
     private String tip;
-    private Date date;
+    private LocalDateTime date;
     private String userName;
 
     public long getRid() {
@@ -46,11 +46,11 @@ public class Weather {
         this.tip = tip;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

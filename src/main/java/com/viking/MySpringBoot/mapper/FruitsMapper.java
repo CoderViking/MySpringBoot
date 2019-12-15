@@ -18,4 +18,6 @@ public interface FruitsMapper {
     @Datasource("linuxServer")
     List<Map> getBook();
     void addWeather(@Param("param") Weather weather);
+
+    List<Weather> selectWeatherInfo(Integer id);
 }

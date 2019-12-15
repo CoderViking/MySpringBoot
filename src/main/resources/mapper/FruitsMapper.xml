@@ -16,4 +16,10 @@
         INSERT INTO weather (weather,temperature,tip,date,user_name)
         VALUES (#{param.weather},#{param.temperature},#{param.tip},#{param.date},#{param.userName})
     </insert>
+    <select id="selectWeatherInfo" parameterType="java.lang.Integer" resultType="com.viking.MySpringBoot.entity.Weather">
+        select * from weather
+        <where>
+            <if test="id != null"> and rid = #{id}</if>
+        </where>
+    </select>
 </mapper>

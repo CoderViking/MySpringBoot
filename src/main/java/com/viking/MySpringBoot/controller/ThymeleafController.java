@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -69,7 +70,7 @@ public class ThymeleafController {
         weather.setUserName("测试用户");
         weather.setTip("温馨提示");
         weather.setTemperature(36.4f);
-        weather.setDate(new Date());
+        weather.setDate(LocalDateTime.now());
         return weather;
     }
 }
